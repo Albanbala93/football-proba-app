@@ -131,3 +131,7 @@ python app/backtesting/compare_engines.py
 - Les donnees brutes ne sont pas incluses dans le depot.
 - Les sorties de backtest et de comparaison sont ecrites dans `data/predictions/`.
 - L interface Streamlit permet de consulter l historique, d analyser un match a venir et de suivre les evaluations des predictions enregistrees.
+
+## Migration
+
+Ce depot a ete migre depuis un backup Google Drive le 2026-08-17. Deux fichiers d audit JSON volumineux (`api_football_coverage_audit_61_2025.json`, `api_football_coverage_audit_61_2024.json`) ont ete exclus de la migration en raison de leur taille. Les variables d environnement requises sont listees dans `.env.example` (a copier vers `.env`, jamais commite).

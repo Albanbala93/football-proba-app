@@ -1,0 +1,97 @@
+league,season,team,source_file
+Premier League,2025-2026,Arsenal,premier_league_2025_2026.csv
+Premier League,2025-2026,Aston Villa,premier_league_2025_2026.csv
+Premier League,2025-2026,Bournemouth,premier_league_2025_2026.csv
+Premier League,2025-2026,Brentford,premier_league_2025_2026.csv
+Premier League,2025-2026,Brighton,premier_league_2025_2026.csv
+Premier League,2025-2026,Burnley,premier_league_2025_2026.csv
+Premier League,2025-2026,Chelsea,premier_league_2025_2026.csv
+Premier League,2025-2026,Crystal Palace,premier_league_2025_2026.csv
+Premier League,2025-2026,Everton,premier_league_2025_2026.csv
+Premier League,2025-2026,Fulham,premier_league_2025_2026.csv
+Premier League,2025-2026,Leeds,premier_league_2025_2026.csv
+Premier League,2025-2026,Liverpool,premier_league_2025_2026.csv
+Premier League,2025-2026,Man City,premier_league_2025_2026.csv
+Premier League,2025-2026,Man United,premier_league_2025_2026.csv
+Premier League,2025-2026,Newcastle,premier_league_2025_2026.csv
+Premier League,2025-2026,Nott'm Forest,premier_league_2025_2026.csv
+Premier League,2025-2026,Sunderland,premier_league_2025_2026.csv
+Premier League,2025-2026,Tottenham,premier_league_2025_2026.csv
+Premier League,2025-2026,West Ham,premier_league_2025_2026.csv
+Premier League,2025-2026,Wolves,premier_league_2025_2026.csv
+Ligue 1,2025-2026,Angers,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Auxerre,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Brest,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Le Havre,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Lens,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Lille,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Lorient,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Lyon,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Marseille,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Metz,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Monaco,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Nantes,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Nice,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Paris FC,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Paris SG,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Rennes,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Strasbourg,ligue1_2025_2026.csv
+Ligue 1,2025-2026,Toulouse,ligue1_2025_2026.csv
+La Liga,2025-2026,Alaves,laliga_2025_2026.csv
+La Liga,2025-2026,Ath Bilbao,laliga_2025_2026.csv
+La Liga,2025-2026,Ath Madrid,laliga_2025_2026.csv
+La Liga,2025-2026,Barcelona,laliga_2025_2026.csv
+La Liga,2025-2026,Betis,laliga_2025_2026.csv
+La Liga,2025-2026,Celta,laliga_2025_2026.csv
+La Liga,2025-2026,Elche,laliga_2025_2026.csv
+La Liga,2025-2026,Espanol,laliga_2025_2026.csv
+La Liga,2025-2026,Getafe,laliga_2025_2026.csv
+La Liga,2025-2026,Girona,laliga_2025_2026.csv
+La Liga,2025-2026,Levante,laliga_2025_2026.csv
+La Liga,2025-2026,Mallorca,laliga_2025_2026.csv
+La Liga,2025-2026,Osasuna,laliga_2025_2026.csv
+La Liga,2025-2026,Oviedo,laliga_2025_2026.csv
+La Liga,2025-2026,Real Madrid,laliga_2025_2026.csv
+La Liga,2025-2026,Sevilla,laliga_2025_2026.csv
+La Liga,2025-2026,Sociedad,laliga_2025_2026.csv
+La Liga,2025-2026,Valencia,laliga_2025_2026.csv
+La Liga,2025-2026,Vallecano,laliga_2025_2026.csv
+La Liga,2025-2026,Villarreal,laliga_2025_2026.csv
+Serie A,2025-2026,Atalanta,seriea_2025_2026.csv
+Serie A,2025-2026,Bologna,seriea_2025_2026.csv
+Serie A,2025-2026,Cagliari,seriea_2025_2026.csv
+Serie A,2025-2026,Como,seriea_2025_2026.csv
+Serie A,2025-2026,Cremonese,seriea_2025_2026.csv
+Serie A,2025-2026,Fiorentina,seriea_2025_2026.csv
+Serie A,2025-2026,Genoa,seriea_2025_2026.csv
+Serie A,2025-2026,Inter,seriea_2025_2026.csv
+Serie A,2025-2026,Juventus,seriea_2025_2026.csv
+Serie A,2025-2026,Lazio,seriea_2025_2026.csv
+Serie A,2025-2026,Lecce,seriea_2025_2026.csv
+Serie A,2025-2026,Milan,seriea_2025_2026.csv
+Serie A,2025-2026,Napoli,seriea_2025_2026.csv
+Serie A,2025-2026,Parma,seriea_2025_2026.csv
+Serie A,2025-2026,Pisa,seriea_2025_2026.csv
+Serie A,2025-2026,Roma,seriea_2025_2026.csv
+Serie A,2025-2026,Sassuolo,seriea_2025_2026.csv
+Serie A,2025-2026,Torino,seriea_2025_2026.csv
+Serie A,2025-2026,Udinese,seriea_2025_2026.csv
+Serie A,2025-2026,Verona,seriea_2025_2026.csv
+Bundesliga,2025-2026,Augsburg,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Bayern Munich,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Dortmund,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Ein Frankfurt,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,FC Koln,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Freiburg,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Hamburg,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Heidenheim,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Hoffenheim,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Leverkusen,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,M'gladbach,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Mainz,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,RB Leipzig,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,St Pauli,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Stuttgart,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Union Berlin,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Werder Bremen,bundesliga_2025_2026.csv
+Bundesliga,2025-2026,Wolfsburg,bundesliga_2025_2026.csv

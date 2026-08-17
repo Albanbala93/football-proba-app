@@ -1,0 +1,12 @@
+file_path,detected_separator,rows,columns_count,relevance_score,detected_date_column,detected_league_column,detected_season_column,detected_team_column,detected_xg_columns,columns
+data\external\understat\Understat\understat_league_table_001.csv,;,18,12,4,,,,team,xG; xGA; xPTS,number; team; matches; wins; draws; loses; goals; ga; points; xG; xGA; xPTS
+data\external\understat\Understat\understat_league_table_002.csv,;,18,12,4,,,,team,xG; xGA; xPTS,number; team; matches; wins; draws; loses; goals; ga; points; xG; xGA; xPTS
+data\external\understat\Understat\understat_league_table_003.csv,;,18,12,4,,,,team,xG; xGA; xPTS,number; team; matches; wins; draws; loses; goals; ga; points; xG; xGA; xPTS
+data\external\understat\Understat\understat_player_stats_004.csv,;,550,11,2,,,,team,xG; xG90,number; player; team; apps; min; goals; a; xG; xA; xG90; xA90
+data\external\understat\Understat\understat_player_stats_005.csv,;,28,13,1,,,,,xG; xG90,number; player; position; apps; min; goals; assists; sp90m; kp90; xG; xA; xG90; xA90
+data\external\understat\Understat\understat_team_situational_stats_006.csv,;,5,12,2,,,,,xG; xGA; xG_diff; xG90; xGA90,number; statistic; min; shots; goals; shots_against; goals_against; xG; xGA; xG_diff; xG90; xGA90
+data\external\understat\Understat\understat_team_situational_stats_007.csv,;,5,12,2,,,,,xG; xGA; xG_diff; xG90; xGA90,number; statistic; min; shots; goals; shots_against; goals_against; xG; xGA; xG_diff; xG90; xGA90
+data\external\understat\Understat\understat_team_situational_stats_008.csv,;,6,11,2,,,,,xG; xGA; xG_diff; xGperSh; xGAperSh,number; statistic; shots; goals; shots_against; goals_against; xG; xGA; xG_diff; xGperSh; xGAperSh
+data\external\understat\Understat\understat_team_situational_stats_009.csv,;,4,11,2,,,,,xG; xGA; xG_diff; xGperSh; xGAperSh,number; statistic; shots; goals; shots_against; goals_against; xG; xGA; xG_diff; xGperSh; xGAperSh
+data\external\understat\Understat\understat_team_situational_stats_010.csv,;,5,11,2,,,,,xG; xGA; xG_diff; xGperSh; xGAperSh,number; statistic; shots; goals; shots_against; goals_against; xG; xGA; xG_diff; xGperSh; xGAperSh
+data\external\understat\Understat\understat_team_situational_stats_011.csv,;,5,11,2,,,,,xG; xGA; xG_diff; xGperSh; xGAperSh,number; statistic; shots; goals; shots_against; goals_against; xG; xGA; xG_diff; xGperSh; xGAperSh

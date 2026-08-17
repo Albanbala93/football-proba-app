@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env
+venv/
+.env
+.env.*
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data generated files
+data/processed/
+data/predictions/
+data/external/sportmonks/
+
+# Models generated files
+models/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# External API raw/debug data
+data/external/
+data/reference/sportmonks_*.csv
+data/reference/sportmonks_*.json

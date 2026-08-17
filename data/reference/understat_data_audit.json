@@ -1,0 +1,300 @@
+{
+  "input_dir": "data\\external\\understat",
+  "input_dir_exists": true,
+  "supported_file_count": 11,
+  "files": [
+    {
+      "path": "data\\external\\understat\\Understat\\understat_league_table_001.csv",
+      "detected_separator": ";",
+      "rows": 18,
+      "columns_count": 12,
+      "columns": [
+        "number",
+        "team",
+        "matches",
+        "wins",
+        "draws",
+        "loses",
+        "goals",
+        "ga",
+        "points",
+        "xG",
+        "xGA",
+        "xPTS"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xGA",
+        "xPTS"
+      ],
+      "error": null
+    },
+    {
+      "path": "data\\external\\understat\\Understat\\understat_league_table_002.csv",
+      "detected_separator": ";",
+      "rows": 18,
+      "columns_count": 12,
+      "columns": [
+        "number",
+        "team",
+        "matches",
+        "wins",
+        "draws",
+        "loses",
+        "goals",
+        "ga",
+        "points",
+        "xG",
+        "xGA",
+        "xPTS"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xGA",
+        "xPTS"
+      ],
+      "error": null
+    },
+    {
+      "path": "data\\external\\understat\\Understat\\understat_league_table_003.csv",
+      "detected_separator": ";",
+      "rows": 18,
+      "columns_count": 12,
+      "columns": [
+        "number",
+        "team",
+        "matches",
+        "wins",
+        "draws",
+        "loses",
+        "goals",
+        "ga",
+        "points",
+        "xG",
+        "xGA",
+        "xPTS"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xGA",
+        "xPTS"
+      ],
+      "error": null
+    },
+    {
+      "path": "data\\external\\understat\\Understat\\understat_player_stats_004.csv",
+      "detected_separator": ";",
+      "rows": 550,
+      "columns_count": 11,
+      "columns": [
+        "number",
+        "player",
+        "team",
+        "apps",
+        "min",
+        "goals",
+        "a",
+        "xG",
+        "xA",
+        "xG90",
+        "xA90"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xG90"
+      ],
+      "error": null
+    },
+    {
+      "path": "data\\external\\understat\\Understat\\understat_player_stats_005.csv",
+      "detected_separator": ";",
+      "rows": 28,
+      "columns_count": 13,
+      "columns": [
+        "number",
+        "player",
+        "position",
+        "apps",
+        "min",
+        "goals",
+        "assists",
+        "sp90m",
+        "kp90",
+        "xG",
+        "xA",
+        "xG90",
+        "xA90"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xG90"
+      ],
+      "error": null
+    },
+    {
+      "path": "data\\external\\understat\\Understat\\understat_team_situational_stats_006.csv",
+      "detected_separator": ";",
+      "rows": 5,
+      "columns_count": 12,
+      "columns": [
+        "number",
+        "statistic",
+        "min",
+        "shots",
+        "goals",
+        "shots_against",
+        "goals_against",
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xG90",
+        "xGA90"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xG90",
+        "xGA90"
+      ],
+      "error": null
+    },
+    {
+      "path": "data\\external\\understat\\Understat\\understat_team_situational_stats_007.csv",
+      "detected_separator": ";",
+      "rows": 5,
+      "columns_count": 12,
+      "columns": [
+        "number",
+        "statistic",
+        "min",
+        "shots",
+        "goals",
+        "shots_against",
+        "goals_against",
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xG90",
+        "xGA90"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xG90",
+        "xGA90"
+      ],
+      "error": null
+    },
+    {
+      "path": "data\\external\\understat\\Understat\\understat_team_situational_stats_008.csv",
+      "detected_separator": ";",
+      "rows": 6,
+      "columns_count": 11,
+      "columns": [
+        "number",
+        "statistic",
+        "shots",
+        "goals",
+        "shots_against",
+        "goals_against",
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xGperSh",
+        "xGAperSh"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xGperSh",
+        "xGAperSh"
+      ],
+      "error": null
+    },
+    {
+      "path": "data\\external\\understat\\Understat\\understat_team_situational_stats_009.csv",
+      "detected_separator": ";",
+      "rows": 4,
+      "columns_count": 11,
+      "columns": [
+        "number",
+        "statistic",
+        "shots",
+        "goals",
+        "shots_against",
+        "goals_against",
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xGperSh",
+        "xGAperSh"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xGperSh",
+        "xGAperSh"
+      ],
+      "error": null
+    },
+    {
+      "path": "data\\external\\understat\\Understat\\understat_team_situational_stats_010.csv",
+      "detected_separator": ";",
+      "rows": 5,
+      "columns_count": 11,
+      "columns": [
+        "number",
+        "statistic",
+        "shots",
+        "goals",
+        "shots_against",
+        "goals_against",
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xGperSh",
+        "xGAperSh"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xGperSh",
+        "xGAperSh"
+      ],
+      "error": null
+    },
+    {
+      "path": "data\\external\\understat\\Understat\\understat_team_situational_stats_011.csv",
+      "detected_separator": ";",
+      "rows": 5,
+      "columns_count": 11,
+      "columns": [
+        "number",
+        "statistic",
+        "shots",
+        "goals",
+        "shots_against",
+        "goals_against",
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xGperSh",
+        "xGAperSh"
+      ],
+      "xg_columns_detected": [
+        "xG",
+        "xGA",
+        "xG_diff",
+        "xGperSh",
+        "xGAperSh"
+      ],
+      "error": null
+    }
+  ],
+  "recommendation": null
+}

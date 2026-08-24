@@ -120,40 +120,16 @@ Features candidates :
 - `home_xga_trend`
 - `away_xga_trend`
 
-## 6. Sportmonks
-
-Usage :
-
-- lineups / formations / absents ;
-- POC tactique validé sur Scottish Premiership ;
-- option premium si accès Big 5 nécessaire.
-
-Limite :
-
-- Big 5 non inclus dans l'abonnement actuel ;
-- expected lineups non inclus actuellement.
-
-Rôle potentiel :
-
-Sportmonks reste la meilleure source testée pour les données tactiques structurées. Le POC Scottish Premiership montre que les formations, lineups, absents et statistiques peuvent être récupérés et transformés en features exploitables.
-
-Décision actuelle :
-
-- conserver le POC ;
-- ne pas intégrer au moteur principal Big 5 tant que l'accès Big 5 n'est pas disponible ;
-- réévaluer l'abonnement si les gains tactiques justifient le coût.
-
 ## Roadmap Recommandée
 
 1. Priorité 1 : Understat xG Big 5.
 2. Priorité 2 : football-data.org fixtures si besoin.
 3. Priorité 3 : StatsBomb Open Data pour prototypage event/tactique.
-4. Priorité 4 : Sportmonks Big 5 si le POC tactique justifie l'abonnement.
 
 ## Synthèse
 
 La meilleure trajectoire court terme est d'enrichir le modèle Big 5 avec des données xG Understat, car elles ciblent directement les championnats déjà modélisés.
 
-La couche tactique Sportmonks reste prometteuse, mais dépend d'un accès premium adapté aux ligues ciblées.
-
 StatsBomb Open Data doit être utilisé comme environnement de recherche, pas comme source de production Big 5.
+
+Le projet s'appuie par ailleurs sur API-Football pour l'enrichissement Ligue 1 (xG, compositions, contexte de match). Voir `docs/ligue1_realtime_context_features_plan.md`.

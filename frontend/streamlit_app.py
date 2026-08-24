@@ -37,6 +37,7 @@ LIGUE1_API_XG_FEATURES_PATH = PROJECT_ROOT / "data" / "processed" / "api_footbal
 LIGUE1_API_XG_FORMATION_FEATURES_PATH = PROJECT_ROOT / "data" / "processed" / "api_football_ligue1_2025_formation_performance_features.csv"
 LIGUE1_API_XG_INJURY_FEATURES_PATH = PROJECT_ROOT / "data" / "processed" / "api_football_ligue1_2025_injury_impact_features.csv"
 LIGUE1_API_XG_MATCH_STAKES_PATH = PROJECT_ROOT / "data" / "processed" / "api_football_ligue1_2025_match_stakes_features.csv"
+LIGUE1_API_XG_LINEUP_STRENGTH_PATH = PROJECT_ROOT / "data" / "processed" / "api_football_ligue1_2025_lineup_strength_features.csv"
 MATCH_PROFILES_ANALYSIS_PATH = PROJECT_ROOT / "data" / "predictions" / "match_profiles_analysis.csv"
 UPCOMING_PREDICTIONS_LOG_PATH = PROJECT_ROOT / "data" / "predictions" / "upcoming_predictions_log.csv"
 UPCOMING_PREDICTIONS_EVALUATED_PATH = PROJECT_ROOT / "data" / "predictions" / "upcoming_predictions_evaluated.csv"
@@ -428,6 +429,23 @@ def load_ligue1_match_stakes_features() -> pd.DataFrame:
     if not LIGUE1_API_XG_MATCH_STAKES_PATH.exists():
         return pd.DataFrame()
     features = pd.read_csv(LIGUE1_API_XG_MATCH_STAKES_PATH)
+    if "date" in features.columns:
+        features["api_date_only"] = features["date"].apply(to_date_only)
+    if "home_team_name" in features.columns:
+        features["home_team_key"] = features["home_team_name"].map(normalize_team_name_for_matching)
+        features["home_team_key_basic"] = features["home_team_name"].map(normalize_team_name_basic)
+    if "away_team_name" in features.columns:
+        features["away_team_key"] = features["away_team_name"].map(normalize_team_name_for_matching)
+        features["away_team_key_basic"] = features["away_team_name"].map(normalize_team_name_basic)
+    return features
+
+
+@st.cache_data
+def load_ligue1_lineup_strength_features() -> pd.DataFrame:
+    """Load Ligue 1 lineup strength / rotation features when available."""
+    if not LIGUE1_API_XG_LINEUP_STRENGTH_PATH.exists():
+        return pd.DataFrame()
+    features = pd.read_csv(LIGUE1_API_XG_LINEUP_STRENGTH_PATH)
     if "date" in features.columns:
         features["api_date_only"] = features["date"].apply(to_date_only)
     if "home_team_name" in features.columns:

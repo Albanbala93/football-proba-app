@@ -39,9 +39,9 @@ def _require_columns(df: pd.DataFrame, columns: list[str], source_file: Path) ->
         raise ValueError(f"Missing required columns in {source_file.name}: {', '.join(missing)}")
 
 
-def _find_latest_files(raw_dir: Path) -> dict[str, tuple[str, Path]]:
-    """Return the latest available season file for each configured league."""
-    latest_files: dict[str, tuple[int, int, str, Path]] = {}
+def _find_season_files(raw_dir: Path) -> dict[str, list[tuple[int, int, str, Path]]]:
+    """Return every available season file per league, most recent first."""
+    files_by_league: dict[str, list[tuple[int, int, str, Path]]] = {}
 
     for csv_file in raw_dir.glob("*.csv"):
         match = RAW_FILE_PATTERN.match(csv_file.name)
@@ -49,27 +49,25 @@ def _find_latest_files(raw_dir: Path) -> dict[str, tuple[str, Path]]:
             continue
 
         league_key, start_year_raw, end_year_raw = match.groups()
-        start_year = int(start_year_raw)
-        end_year = int(end_year_raw)
         season = f"{start_year_raw}-{end_year_raw}"
-        current = latest_files.get(league_key)
-        if current is None or (start_year, end_year) > (current[0], current[1]):
-            latest_files[league_key] = (start_year, end_year, season, csv_file)
+        entry = (int(start_year_raw), int(end_year_raw), season, csv_file)
+        files_by_league.setdefault(league_key, []).append(entry)
 
-    missing_leagues = [league_key for league_key in LEAGUE_NAMES if league_key not in latest_files]
+    for entries in files_by_league.values():
+        entries.sort(key=lambda entry: (entry[0], entry[1]), reverse=True)
+
+    missing_leagues = [league_key for league_key in LEAGUE_NAMES if league_key not in files_by_league]
     if missing_leagues:
         raise FileNotFoundError(f"No raw season file found for: {', '.join(missing_leagues)}")
 
-    return {league_key: (season, csv_file) for league_key, _, _, season, csv_file in _iter_latest(latest_files)}
+    return files_by_league
 
 
-def _iter_latest(latest_files: dict[str, tuple[int, int, str, Path]]) -> list[tuple[str, int, int, str, Path]]:
-    """Return latest file metadata in configured league order."""
-    return [
-        (league_key, *latest_files[league_key])
-        for league_key in LEAGUE_NAMES
-        if league_key in latest_files
-    ]
+def _find_latest_files(raw_dir: Path) -> dict[str, tuple[str, Path]]:
+    """Return the latest available season file for each configured league."""
+    files_by_league = _find_season_files(raw_dir)
+    latest_files = {league_key: entries[0] for league_key, entries in files_by_league.items()}
+    return {league_key: (season, csv_file) for league_key, (_, _, season, csv_file) in latest_files.items()}
 
 
 def _team_list(raw_file: Path) -> list[str]:
@@ -91,13 +89,24 @@ def generate_current_teams(
     if not raw_dir.exists():
         raise FileNotFoundError(f"Raw data directory not found: {raw_dir}")
 
-    latest_files = _find_latest_files(raw_dir)
+    files_by_league = _find_season_files(raw_dir)
     rows = []
     summaries = []
 
     for league_key, league_name in LEAGUE_NAMES.items():
-        season, source_file = latest_files[league_key]
+        entries = files_by_league[league_key]
+        _, _, season, source_file = entries[0]
+        expected_count = EXPECTED_TEAM_COUNTS[league_name]
         teams = _team_list(source_file)
+        carried_over_teams: list[str] = []
+        carried_over_season: str | None = None
+
+        if len(teams) < expected_count and len(entries) > 1:
+            _, _, previous_season, previous_file = entries[1]
+            previous_teams = _team_list(previous_file)
+            carried_over_teams = sorted(set(previous_teams) - set(teams))
+            carried_over_season = previous_season
+            teams = sorted(set(teams) | set(carried_over_teams))
 
         for team in teams:
             rows.append(
@@ -105,7 +114,11 @@ def generate_current_teams(
                     "league": league_name,
                     "season": season,
                     "team": team,
-                    "source_file": source_file.name,
+                    "source_file": (
+                        f"{previous_file.name} (report suivant, pas encore joue en {season})"
+                        if team in carried_over_teams
+                        else source_file.name
+                    ),
                 }
             )
 
@@ -115,6 +128,8 @@ def generate_current_teams(
                 "season": season,
                 "team_count": len(teams),
                 "teams": teams,
+                "carried_over_teams": carried_over_teams,
+                "carried_over_season": carried_over_season,
             }
         )
 
@@ -142,6 +157,14 @@ def print_current_teams_summary(summaries: list[dict[str, object]], raw_dir: Pat
         print(f"\n{league} ({season})")
         print(f"Teams: {team_count}")
         print(", ".join(teams))
+
+        carried_over_teams = list(summary["carried_over_teams"])
+        carried_over_season = summary["carried_over_season"]
+        if carried_over_teams:
+            print(
+                f"Completees avec {carried_over_season} (pas encore jouees en {season}): "
+                + ", ".join(carried_over_teams)
+            )
 
         if team_count != expected_count:
             warnings.append(f"{league} expected {expected_count} teams, found {team_count}")

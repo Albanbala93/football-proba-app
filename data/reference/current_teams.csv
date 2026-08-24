@@ -1,24 +1,24 @@
 league,season,team,source_file
-Premier League,2025-2026,Arsenal,premier_league_2025_2026.csv
-Premier League,2025-2026,Aston Villa,premier_league_2025_2026.csv
-Premier League,2025-2026,Bournemouth,premier_league_2025_2026.csv
-Premier League,2025-2026,Brentford,premier_league_2025_2026.csv
-Premier League,2025-2026,Brighton,premier_league_2025_2026.csv
-Premier League,2025-2026,Burnley,premier_league_2025_2026.csv
-Premier League,2025-2026,Chelsea,premier_league_2025_2026.csv
-Premier League,2025-2026,Crystal Palace,premier_league_2025_2026.csv
-Premier League,2025-2026,Everton,premier_league_2025_2026.csv
-Premier League,2025-2026,Fulham,premier_league_2025_2026.csv
-Premier League,2025-2026,Leeds,premier_league_2025_2026.csv
-Premier League,2025-2026,Liverpool,premier_league_2025_2026.csv
-Premier League,2025-2026,Man City,premier_league_2025_2026.csv
-Premier League,2025-2026,Man United,premier_league_2025_2026.csv
-Premier League,2025-2026,Newcastle,premier_league_2025_2026.csv
-Premier League,2025-2026,Nott'm Forest,premier_league_2025_2026.csv
-Premier League,2025-2026,Sunderland,premier_league_2025_2026.csv
-Premier League,2025-2026,Tottenham,premier_league_2025_2026.csv
-Premier League,2025-2026,West Ham,premier_league_2025_2026.csv
-Premier League,2025-2026,Wolves,premier_league_2025_2026.csv
+Premier League,2026-2027,Arsenal,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Aston Villa,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Bournemouth,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Brentford,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Brighton,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Burnley,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Chelsea,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Coventry,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Crystal Palace,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Everton,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Fulham,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Hull,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Ipswich,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Leeds,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Liverpool,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Man City,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Man United,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Newcastle,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Nott'm Forest,manual_current_teams.csv (renseigne a la main)
+Premier League,2026-2027,Sunderland,manual_current_teams.csv (renseigne a la main)
 Ligue 1,2026-2027,Angers,manual_current_teams.csv (renseigne a la main)
 Ligue 1,2026-2027,Auxerre,manual_current_teams.csv (renseigne a la main)
 Ligue 1,2026-2027,Brest,manual_current_teams.csv (renseigne a la main)

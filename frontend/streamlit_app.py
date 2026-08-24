@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -28,6 +29,7 @@ from app.core.upcoming_match_predictor import predict_upcoming_match  # noqa: E4
 from app.core.upcoming_match_predictor import build_upcoming_match_features  # noqa: E402
 
 
+REQUIRED_MODEL_PATH = PROJECT_ROOT / "models" / "outcome_models" / "home_win_model_classic.pkl"
 FEATURES_PATH = PROJECT_ROOT / "data" / "processed" / "matches_features.csv"
 CURRENT_TEAMS_PATH = PROJECT_ROOT / "data" / "reference" / "current_teams.csv"
 UPCOMING_FIXTURES_PATH = PROJECT_ROOT / "data" / "reference" / "upcoming_fixtures.csv"
@@ -3595,10 +3597,40 @@ def render_predictions_evaluation_tab() -> None:
     st.dataframe(filtered[display_columns], use_container_width=True)
 
 
+def ensure_data_ready() -> None:
+    """Auto-run the data/model rebuild pipeline once, if it has never run.
+
+    models/ and data/processed/ are intentionally gitignored (they are
+    generated from data/raw/, which is committed). A fresh checkout -- most
+    notably a fresh Streamlit Community Cloud deployment -- won't have them
+    yet, so the app would otherwise fail at startup. Runs the same pipeline
+    as `python scripts/rebuild_all.py`, once per deployment lifetime.
+    """
+    if FEATURES_PATH.exists() and REQUIRED_MODEL_PATH.exists():
+        return
+
+    with st.spinner(
+        "Première initialisation : génération des données et modèles "
+        "(peut prendre 1 à 2 minutes, une seule fois)..."
+    ):
+        result = subprocess.run(
+            [sys.executable, str(PROJECT_ROOT / "scripts" / "rebuild_all.py")],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True,
+        )
+
+    if result.returncode != 0:
+        st.error("Échec de l'initialisation automatique des données et modèles.")
+        st.code((result.stdout or "")[-3000:] + "\n" + (result.stderr or "")[-3000:])
+        st.stop()
+
+
 def main() -> None:
     """Render the Streamlit application."""
     st.set_page_config(page_title="Football Probability Engine", layout="wide")
     inject_ui_styles()
+    ensure_data_ready()
     st.markdown(
         """
         <div class="app-header">

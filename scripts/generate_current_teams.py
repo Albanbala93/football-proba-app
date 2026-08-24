@@ -12,6 +12,7 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RAW_DIR = PROJECT_ROOT / "data" / "raw"
 DEFAULT_OUTPUT_PATH = PROJECT_ROOT / "data" / "reference" / "current_teams.csv"
+MANUAL_OVERRIDES_PATH = PROJECT_ROOT / "data" / "reference" / "manual_current_teams.csv"
 
 LEAGUE_NAMES = {
     "premier_league": "Premier League",
@@ -81,6 +82,33 @@ def _team_list(raw_file: Path) -> list[str]:
     return sorted(teams.unique())
 
 
+def _load_manual_overrides(path: Path = MANUAL_OVERRIDES_PATH) -> dict[str, tuple[str, list[str]]]:
+    """Load hand-maintained league -> (season, teams) overrides, when present.
+
+    Lets a real current-season roster (confirmed by hand, e.g. from the
+    official league website) take priority over both the automated raw-file
+    detection and the previous-season carry-over -- useful early in a season
+    when neither Football-Data.co.uk nor an API-Football plan has the data
+    yet. Keyed by league only (not by the raw files' detected season): if no
+    raw file exists yet for the new season at all, the "latest" raw season
+    would still read as the prior one, so a season match would never fire.
+    When several seasons exist for one league in the override file, the most
+    recent one wins. Remove or update entries here once real season data
+    catches up.
+    """
+    if not path.exists():
+        return {}
+    overrides_df = pd.read_csv(path)
+    _require_columns(overrides_df, ["league", "season", "team"], path)
+    overrides: dict[str, tuple[str, list[str]]] = {}
+    for league, group in overrides_df.groupby("league"):
+        latest_season = sorted(group["season"].dropna().astype(str).unique())[-1]
+        latest_group = group[group["season"].astype(str) == latest_season]
+        teams = sorted(latest_group["team"].dropna().astype(str).str.strip().unique())
+        overrides[str(league)] = (latest_season, teams)
+    return overrides
+
+
 def generate_current_teams(
     raw_dir: Path = DEFAULT_RAW_DIR,
     output_path: Path = DEFAULT_OUTPUT_PATH,
@@ -90,6 +118,7 @@ def generate_current_teams(
         raise FileNotFoundError(f"Raw data directory not found: {raw_dir}")
 
     files_by_league = _find_season_files(raw_dir)
+    manual_overrides = _load_manual_overrides()
     rows = []
     summaries = []
 
@@ -97,6 +126,32 @@ def generate_current_teams(
         entries = files_by_league[league_key]
         _, _, season, source_file = entries[0]
         expected_count = EXPECTED_TEAM_COUNTS[league_name]
+        manual_override = manual_overrides.get(league_name)
+
+        if manual_override:
+            season, teams = manual_override
+            for team in teams:
+                rows.append(
+                    {
+                        "league": league_name,
+                        "season": season,
+                        "team": team,
+                        "source_file": f"{MANUAL_OVERRIDES_PATH.name} (renseigne a la main)",
+                    }
+                )
+            summaries.append(
+                {
+                    "league": league_name,
+                    "season": season,
+                    "team_count": len(teams),
+                    "teams": teams,
+                    "carried_over_teams": [],
+                    "carried_over_season": None,
+                    "manual_override": True,
+                }
+            )
+            continue
+
         teams = _team_list(source_file)
         carried_over_teams: list[str] = []
         carried_over_season: str | None = None
@@ -130,6 +185,7 @@ def generate_current_teams(
                 "teams": teams,
                 "carried_over_teams": carried_over_teams,
                 "carried_over_season": carried_over_season,
+                "manual_override": False,
             }
         )
 
@@ -157,6 +213,9 @@ def print_current_teams_summary(summaries: list[dict[str, object]], raw_dir: Pat
         print(f"\n{league} ({season})")
         print(f"Teams: {team_count}")
         print(", ".join(teams))
+
+        if summary.get("manual_override"):
+            print(f"Source : liste renseignee a la main dans {MANUAL_OVERRIDES_PATH.name}")
 
         carried_over_teams = list(summary["carried_over_teams"])
         carried_over_season = summary["carried_over_season"]

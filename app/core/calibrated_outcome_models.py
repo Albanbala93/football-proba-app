@@ -83,6 +83,15 @@ FEATURE_CANDIDATES = [
     "away_fouls_against_5",
     "away_yellow_cards_5",
     "away_red_cards_5",
+    "home_draw_rate_5",
+    "away_draw_rate_5",
+    "h2h_draw_rate",
+    "h2h_matches_count",
+    "abs_elo_diff",
+    "abs_form_diff_5",
+    "implied_home_prob",
+    "implied_draw_prob",
+    "implied_away_prob",
 ]
 
 

@@ -70,6 +70,14 @@ DERIVED_ADVANCED_FEATURE_COLUMNS = [
     "away_discipline_risk_5",
     "discipline_risk_diff",
 ]
+DRAW_SIGNAL_FEATURE_COLUMNS = [
+    "home_draw_rate_5",
+    "away_draw_rate_5",
+    "h2h_draw_rate",
+    "h2h_matches_count",
+    "abs_elo_diff",
+    "abs_form_diff_5",
+]
 
 
 def _numeric_or_zero(row: pd.Series, column: str) -> float:
@@ -217,6 +225,7 @@ def _match_record(row: pd.Series, team_side: str) -> dict[str, float]:
         "goals_for": goals_for,
         "goals_against": goals_against,
         "win": 1.0 if points == 3 else 0.0,
+        "draw": 1.0 if row["FTR"] == "D" else 0.0,
         "goal_diff": goals_for - goals_against,
         "shots_for": shots_for,
         "shots_against": shots_against,
@@ -250,12 +259,14 @@ def _team_form_features(
     recent_matches = list(team_history[(league, team)])
     matches_count = len(recent_matches)
     wins = _sum_recent(recent_matches, "win")
+    draws = _sum_recent(recent_matches, "draw")
 
     return {
         f"{prefix}_form_5": _sum_recent(recent_matches, "points"),
         f"{prefix}_goals_for_5": _sum_recent(recent_matches, "goals_for"),
         f"{prefix}_goals_against_5": _sum_recent(recent_matches, "goals_against"),
         f"{prefix}_win_rate_5": wins / matches_count if matches_count else 0.0,
+        f"{prefix}_draw_rate_5": draws / matches_count if matches_count else 0.0,
         f"{prefix}_goal_diff_5": _sum_recent(recent_matches, "goal_diff"),
         f"{prefix}_shots_for_5": _sum_recent(recent_matches, "shots_for"),
         f"{prefix}_shots_against_5": _sum_recent(recent_matches, "shots_against"),
@@ -279,6 +290,41 @@ def compute_league_elo_features(matches: pd.DataFrame) -> pd.DataFrame:
     for _, league_matches in matches.groupby("league", sort=True, dropna=False):
         elo_frames.append(compute_elo_features(league_matches))
     return pd.concat(elo_frames).sort_index()
+
+
+def _h2h_key(home_team: str, away_team: str) -> frozenset[str]:
+    """Return an order-independent key identifying a pair of teams."""
+    return frozenset((home_team, away_team))
+
+
+def _h2h_features(h2h_history: dict[frozenset[str], list[bool]], home_team: str, away_team: str) -> dict[str, float]:
+    """Return the pre-match head-to-head draw rate between two teams.
+
+    Uses full history (not just the last five matches) since two teams
+    typically only meet once or twice per season.
+    """
+    past_results = h2h_history[_h2h_key(home_team, away_team)]
+    matches_count = len(past_results)
+    draw_rate = sum(past_results) / matches_count if matches_count else 0.0
+    return {
+        "h2h_draw_rate": draw_rate,
+        "h2h_matches_count": float(matches_count),
+    }
+
+
+def _draw_signal_features(feature_row: dict[str, float]) -> dict[str, float]:
+    """Return magnitude-based features useful to spot evenly matched teams.
+
+    A signed difference (elo_diff, form diff) tells a linear model which side
+    is favored, but not how close the match is. Evenly matched teams (small
+    absolute gaps) draw more often, so the absolute gap is its own signal.
+    """
+    elo_diff = _safe_feature_value(feature_row, "elo_diff")
+    form_diff = _safe_feature_value(feature_row, "home_form_5") - _safe_feature_value(feature_row, "away_form_5")
+    return {
+        "abs_elo_diff": abs(elo_diff),
+        "abs_form_diff_5": abs(form_diff),
+    }
 
 
 def _implied_probabilities(row: pd.Series) -> dict[str, float]:
@@ -317,6 +363,7 @@ def build_features(input_path: Path = DEFAULT_INPUT_PATH, output_path: Path = DE
     elo_features = compute_league_elo_features(matches)
 
     team_history: dict[tuple[str, str], deque[dict[str, float]]] = defaultdict(lambda: deque(maxlen=FORM_WINDOW))
+    h2h_history: dict[frozenset[str], list[bool]] = defaultdict(list)
     feature_rows = []
 
     for _, date_matches in matches.groupby("Date", sort=True):
@@ -344,12 +391,15 @@ def build_features(input_path: Path = DEFAULT_INPUT_PATH, output_path: Path = DE
             feature_row.update(elo_features.loc[row_index].to_dict())
             feature_row.update(_implied_probabilities(row))
             feature_row.update(_derived_advanced_features(feature_row, row))
+            feature_row.update(_h2h_features(h2h_history, home_team, away_team))
+            feature_row.update(_draw_signal_features(feature_row))
             feature_rows.append(feature_row)
 
         for _, row in date_matches.iterrows():
             league = row["league"]
             team_history[(league, row["HomeTeam"])].append(_match_record(row, "home"))
             team_history[(league, row["AwayTeam"])].append(_match_record(row, "away"))
+            h2h_history[_h2h_key(row["HomeTeam"], row["AwayTeam"])].append(row["FTR"] == "D")
 
     features = pd.DataFrame(feature_rows)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -390,6 +440,10 @@ def main() -> None:
     print(f"Added derived advanced features: {len(added_derived_features)}")
     if added_derived_features:
         print(", ".join(added_derived_features))
+    added_draw_signal_features = [column for column in DRAW_SIGNAL_FEATURE_COLUMNS if column in features.columns]
+    print(f"Added draw signal features: {len(added_draw_signal_features)}")
+    if added_draw_signal_features:
+        print(", ".join(added_draw_signal_features))
     if not features.empty:
         print(f"Date range: {features['Date'].min().date()} to {features['Date'].max().date()}")
     print(f"Saved features to: {args.output}")

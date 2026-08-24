@@ -68,6 +68,41 @@ def _round(value: float) -> float:
     return round(float(value), 6)
 
 
+def _match_profile(
+    home_win_probability: float,
+    draw_probability: float,
+    away_win_probability: float,
+    top_two_margin: float,
+    uncertainty_score: float,
+) -> str:
+    """Classify the broad shape of the match probability distribution.
+
+    Kept identical to probability_engine.py so both engines describe a match
+    profile the same way regardless of which one produced the probabilities.
+    """
+    if home_win_probability >= 0.55:
+        return "clear_home_advantage"
+    if away_win_probability >= 0.55:
+        return "clear_away_advantage"
+    if draw_probability >= 0.32:
+        return "very_strong_draw_signal"
+    if draw_probability >= 0.30:
+        return "strong_draw_signal"
+    if top_two_margin <= 0.07:
+        return "balanced_match"
+    if draw_probability >= 0.27 and top_two_margin <= 0.10:
+        return "draw_plausible"
+    if uncertainty_score >= 0.62:
+        return "high_uncertainty"
+    return "moderate_advantage"
+
+
+def _confidence_score(favorite_probability: float, top_two_margin: float, uncertainty_score: float) -> float:
+    """Compute a bounded 0-100 confidence score from probability shape."""
+    score = (favorite_probability * 70) + (top_two_margin * 80) - (uncertainty_score * 35)
+    return round(max(0.0, min(100.0, score)), 2)
+
+
 def predict_match_probabilities_no_odds(match_features: dict[str, Any]) -> dict[str, Any]:
     """Predict no-odds match probabilities."""
     if not match_features:
@@ -87,6 +122,18 @@ def predict_match_probabilities_no_odds(match_features: dict[str, Any]) -> dict[
     uncertainty_score = 1 - sorted_probabilities[0]
     favorite_team = "home" if home_win > away_win else "away" if away_win > home_win else "none"
     favorite_probability = max(home_win, away_win)
+    match_profile = _match_profile(
+        home_win_probability=home_win,
+        draw_probability=draw,
+        away_win_probability=away_win,
+        top_two_margin=top_two_margin,
+        uncertainty_score=uncertainty_score,
+    )
+    confidence_score = _confidence_score(
+        favorite_probability=favorite_probability,
+        top_two_margin=top_two_margin,
+        uncertainty_score=uncertainty_score,
+    )
 
     return {
         "probabilities": {
@@ -101,6 +148,11 @@ def predict_match_probabilities_no_odds(match_features: dict[str, Any]) -> dict[
             "favorite_probability": _round(favorite_probability),
             "uncertainty_score": _round(uncertainty_score),
             "top_two_margin": _round(top_two_margin),
+            "match_profile": match_profile,
+            "confidence_score": confidence_score,
+            "is_draw_plausible": bool(draw >= 0.27),
+            "is_strong_draw_signal": bool(draw >= 0.30),
+            "is_very_strong_draw_signal": bool(draw >= 0.32),
         },
     }
 

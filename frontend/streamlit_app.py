@@ -2356,7 +2356,7 @@ def render_analysis_quality_box(
         <div class="metric-label">Consensus des moteurs</div>
         <div class="metric-value">{html.escape(engine_consensus_label(recommended_classes))}</div>
         <div style="height:10px;"></div>
-        <div class="metric-label">Match profile</div>
+        <div class="metric-label">Profil du match</div>
         <div class="metric-value">{html.escape(profile)}</div>
         <div style="height:10px;"></div>
         <div class="metric-label">Accuracy historique</div>
@@ -2576,7 +2576,9 @@ def render_historical_tab(df_features: pd.DataFrame, profiles_analysis: pd.DataF
 
     if "league" in df_features.columns:
         league_options = ["all"] + sorted(df_features["league"].dropna().astype(str).unique().tolist())
-        selected_league = st.selectbox("Championnat", league_options)
+        selected_league = st.selectbox(
+            "Championnat", league_options, format_func=lambda value: "Tous les championnats" if value == "all" else value
+        )
         if selected_league != "all":
             df_features = df_features[df_features["league"].astype(str) == selected_league].copy()
 
@@ -2854,9 +2856,12 @@ def _render_upcoming_tab_legacy(features: pd.DataFrame) -> None:
 def render_upcoming_tab(features: pd.DataFrame, profiles_analysis: pd.DataFrame) -> None:
     """Render the upcoming match analysis tab."""
     upcoming_fixtures = load_upcoming_fixtures()
+    input_mode_options = ["Sélectionner un match à venir", "Saisie manuelle"]
+    default_mode_index = 1 if upcoming_fixtures.empty else 0
     input_mode = st.radio(
         "Mode de saisie",
-        ["Sélectionner un match à venir", "Saisie manuelle"],
+        input_mode_options,
+        index=default_mode_index,
         horizontal=True,
     )
 
@@ -3110,9 +3115,18 @@ def render_upcoming_tab(features: pd.DataFrame, profiles_analysis: pd.DataFrame)
         (code for code, label in engine_labels_by_code.items() if label == selected_engine_label),
         None,
     )
-    st.caption(
-        "Moteur spécialisé Ligue 1 basé sur xG récents, tirs, tirs cadrés, stabilité de formation et blessures pondérées."
-    )
+    engine_captions_by_code = {
+        "ligue1_api_xg": (
+            "Moteur spécialisé Ligue 1 basé sur xG récents, tirs, tirs cadrés, "
+            "stabilité de formation et blessures pondérées."
+        ),
+        "main_no_odds": "Moteur principal basé sur l'Elo et la forme récente, sans utiliser les cotes du marché.",
+        "main_with_odds": "Moteur principal combinant Elo, forme récente et cotes réelles du marché.",
+        "compare_engines": "Compare les résultats de tous les moteurs disponibles pour ce match.",
+    }
+    engine_caption = engine_captions_by_code.get(selected_engine)
+    if engine_caption:
+        st.caption(engine_caption)
     if selected_league == "Ligue 1" and not experimental_available:
         missing_features = []
         loaded_file = None
@@ -3528,7 +3542,9 @@ def render_predictions_evaluation_tab() -> None:
     status_options = ["all"]
     if "evaluation_status" in filtered.columns:
         status_options += sorted(filtered["evaluation_status"].dropna().astype(str).unique().tolist())
-    selected_status = st.selectbox("Statut", status_options)
+    selected_status = st.selectbox(
+        "Statut", status_options, format_func=lambda value: "Tous les statuts" if value == "all" else value
+    )
     if selected_status != "all" and "evaluation_status" in filtered.columns:
         filtered = filtered[filtered["evaluation_status"].astype(str) == selected_status]
 
@@ -3536,13 +3552,17 @@ def render_predictions_evaluation_tab() -> None:
     if "mode" in filtered.columns:
         available_modes = set(filtered["mode"].dropna().astype(str))
         mode_options += [mode for mode in ["no-odds", "with-odds"] if mode in available_modes]
-    selected_mode = st.selectbox("Mode", mode_options)
+    selected_mode = st.selectbox(
+        "Mode", mode_options, format_func=lambda value: "Tous les modes" if value == "all" else value
+    )
     if selected_mode != "all" and "mode" in filtered.columns:
         filtered = filtered[filtered["mode"].astype(str) == selected_mode]
 
     if "match_profile" in filtered.columns:
         profile_options = ["all"] + sorted(filtered["match_profile"].dropna().astype(str).unique().tolist())
-        selected_profile = st.selectbox("Match profile", profile_options)
+        selected_profile = st.selectbox(
+            "Profil de match", profile_options, format_func=lambda value: "Tous les profils" if value == "all" else value
+        )
         if selected_profile != "all":
             filtered = filtered[filtered["match_profile"].astype(str) == selected_profile]
 

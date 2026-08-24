@@ -227,6 +227,7 @@ def _team_match_record(row: pd.Series, team: str) -> dict[str, float]:
         "goals_for": goals_for,
         "goals_against": goals_against,
         "win": 1.0 if points == 3 else 0.0,
+        "draw": 1.0 if result == "D" else 0.0,
         "goal_diff": goals_for - goals_against,
     }
 
@@ -246,14 +247,40 @@ def get_team_recent_stats(team: str, historical_matches: pd.DataFrame, before_da
     records = [_team_match_record(row, team) for _, row in recent_matches.iterrows()]
     match_count = len(records)
     wins = sum(record["win"] for record in records)
+    draws = sum(record["draw"] for record in records)
 
     return {
         "form_5": float(sum(record["points"] for record in records)),
         "goals_for_5": float(sum(record["goals_for"] for record in records)),
         "goals_against_5": float(sum(record["goals_against"] for record in records)),
         "win_rate_5": float(wins / match_count) if match_count else 0.0,
+        "draw_rate_5": float(draws / match_count) if match_count else 0.0,
         "goal_diff_5": float(sum(record["goal_diff"] for record in records)),
     }
+
+
+def get_h2h_stats(
+    home_team: str,
+    away_team: str,
+    historical_matches: pd.DataFrame,
+    before_date: str | pd.Timestamp,
+) -> dict[str, float]:
+    """Return the pre-match head-to-head draw rate between two teams.
+
+    Uses full history (not just the last five matches), matching the
+    unordered-pair, unbounded-history approach used in build_features.py.
+    """
+    cutoff = pd.to_datetime(before_date)
+    past_meetings = historical_matches[
+        (historical_matches["Date"] < cutoff)
+        & (
+            ((historical_matches["HomeTeam"] == home_team) & (historical_matches["AwayTeam"] == away_team))
+            | ((historical_matches["HomeTeam"] == away_team) & (historical_matches["AwayTeam"] == home_team))
+        )
+    ]
+    matches_count = len(past_meetings)
+    draw_rate = float((past_meetings["FTR"] == "D").mean()) if matches_count else 0.0
+    return {"h2h_draw_rate": draw_rate, "h2h_matches_count": float(matches_count)}
 
 
 def get_latest_team_elo(team: str, matches_features: pd.DataFrame, before_date: str | pd.Timestamp) -> float:
@@ -533,6 +560,21 @@ def _estimated_market_odds(home_elo_with_advantage: float, away_elo: float) -> d
     }
 
 
+def _implied_probabilities(match_features: dict[str, float]) -> dict[str, float]:
+    """Convert bookmaker odds into normalized implied probabilities, when present."""
+    if not all(key in match_features for key in ("B365H", "B365D", "B365A")):
+        return {}
+    implied_home = 1 / match_features["B365H"]
+    implied_draw = 1 / match_features["B365D"]
+    implied_away = 1 / match_features["B365A"]
+    implied_total = implied_home + implied_draw + implied_away
+    return {
+        "implied_home_prob": implied_home / implied_total,
+        "implied_draw_prob": implied_draw / implied_total,
+        "implied_away_prob": implied_away / implied_total,
+    }
+
+
 WITH_ODDS_REQUIRED_MESSAGE = "Le mode with-odds nécessite --odds-home, --odds-draw et --odds-away."
 PSEUDO_ODDS_WARNING = "Attention : les pseudo-cotes sont dérivées de l'Elo et ne remplacent pas des cotes réelles."
 
@@ -586,9 +628,12 @@ def build_upcoming_match_features(
     away_stats = get_team_recent_stats(away_team, matches, cutoff)
     home_advanced_stats = get_team_recent_advanced_stats(home_team, matches, cutoff)
     away_advanced_stats = get_team_recent_advanced_stats(away_team, matches, cutoff)
+    h2h_stats = get_h2h_stats(home_team, away_team, matches, cutoff)
     home_elo = get_latest_team_elo(home_team, features, cutoff)
     away_elo = get_latest_team_elo(away_team, features, cutoff)
     home_elo_with_advantage = home_elo + DEFAULT_HOME_ADVANTAGE
+    elo_diff = home_elo - away_elo
+    form_diff = home_stats["form_5"] - away_stats["form_5"]
 
     match_features = {
         "league": resolved_league,
@@ -600,13 +645,19 @@ def build_upcoming_match_features(
         "away_goals_against_5": away_stats["goals_against_5"],
         "home_win_rate_5": home_stats["win_rate_5"],
         "away_win_rate_5": away_stats["win_rate_5"],
+        "home_draw_rate_5": home_stats["draw_rate_5"],
+        "away_draw_rate_5": away_stats["draw_rate_5"],
         "home_goal_diff_5": home_stats["goal_diff_5"],
         "away_goal_diff_5": away_stats["goal_diff_5"],
         "home_elo": home_elo,
         "away_elo": away_elo,
-        "elo_diff": home_elo - away_elo,
+        "elo_diff": elo_diff,
         "home_elo_with_advantage": home_elo_with_advantage,
         "elo_diff_with_home_advantage": home_elo_with_advantage - away_elo,
+        "abs_elo_diff": abs(elo_diff),
+        "abs_form_diff_5": abs(form_diff),
+        "h2h_draw_rate": h2h_stats["h2h_draw_rate"],
+        "h2h_matches_count": h2h_stats["h2h_matches_count"],
     }
 
     match_features.update(
@@ -640,6 +691,7 @@ def build_upcoming_match_features(
         match_features.update(_validate_manual_odds(manual_odds))
     elif odds_mode == "elo_pseudo":
         match_features.update(_estimated_market_odds(home_elo_with_advantage, away_elo))
+    match_features.update(_implied_probabilities(match_features))
 
     validation_mode = "no-odds" if odds_mode == "none" else "classic"
     _validate_expected_features(match_features, validation_mode)

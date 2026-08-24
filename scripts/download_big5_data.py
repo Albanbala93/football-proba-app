@@ -49,16 +49,19 @@ def download_file(url: str, output_path: Path, force: bool) -> str:
     return "OK"
 
 
-def run_downloads(force: bool = False) -> int:
-    """Download all Big 5 CSV files and return a process exit code."""
+def run_downloads(force: bool = False, current_season_only: bool = False) -> int:
+    """Download Big 5 CSV files and return a process exit code."""
     RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    seasons = [SEASONS[-1]] if current_season_only else SEASONS
+    force = force or current_season_only
 
     errors = 0
     ok_count = 0
     skip_count = 0
 
     for league_label, league_code, league_name in LEAGUES:
-        for season_label, season_file_label, season_code in SEASONS:
+        for season_label, season_file_label, season_code in seasons:
             url = URL_TEMPLATE.format(season_code=season_code, league_code=league_code)
             output_path = RAW_DATA_DIR / f"{league_name}_{season_file_label}.csv"
             status = download_file(url, output_path, force)
@@ -83,13 +86,18 @@ def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(description="Download Football-Data CSV files for Europe's Big 5 leagues.")
     parser.add_argument("--force", action="store_true", help="Redownload files even when they already exist.")
+    parser.add_argument(
+        "--current-season-only",
+        action="store_true",
+        help="Only (re)download the latest configured season, forcing overwrite. Used for scheduled refreshes.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     """Run the Big 5 data downloader."""
     args = parse_args()
-    return run_downloads(force=args.force)
+    return run_downloads(force=args.force, current_season_only=args.current_season_only)
 
 
 if __name__ == "__main__":

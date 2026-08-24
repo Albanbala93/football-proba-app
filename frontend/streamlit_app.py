@@ -90,6 +90,9 @@ EVALUATION_TABLE_COLUMNS = [
     "match_profile",
     "confidence_score",
 ]
+RELIABILITY_TREND_WINDOW_DAYS = 28
+RELIABILITY_TREND_MIN_SAMPLE = 10
+RELIABILITY_DRIFT_ALERT_THRESHOLD = 0.15
 LIGUE1_API_XG_LIVE_TRACKING_COLUMNS = [
     "prediction_datetime",
     "match_date",
@@ -3425,6 +3428,73 @@ def render_upcoming_tab(features: pd.DataFrame, profiles_analysis: pd.DataFrame)
             )
 
 
+def render_reliability_trend(evaluated: pd.DataFrame) -> None:
+    """Render a rolling accuracy/Brier trend with a drift alert vs the prior window."""
+    if evaluated.empty or "match_date" not in evaluated.columns:
+        return
+
+    trend = evaluated.copy()
+    trend["match_date"] = pd.to_datetime(trend["match_date"], errors="coerce")
+    trend = trend.dropna(subset=["match_date"])
+    if trend.empty:
+        return
+
+    trend["is_correct_bool"] = trend["is_correct"].astype(str).str.lower().eq("true")
+    trend["brier_score_1N2"] = pd.to_numeric(trend["brier_score_1N2"], errors="coerce")
+
+    st.subheader("Tendance de fiabilité")
+
+    latest_date = trend["match_date"].max()
+    recent_cutoff = latest_date - pd.Timedelta(days=RELIABILITY_TREND_WINDOW_DAYS)
+    previous_cutoff = latest_date - pd.Timedelta(days=2 * RELIABILITY_TREND_WINDOW_DAYS)
+    recent = trend[trend["match_date"] > recent_cutoff]
+    previous = trend[(trend["match_date"] <= recent_cutoff) & (trend["match_date"] > previous_cutoff)]
+
+    if len(recent) < RELIABILITY_TREND_MIN_SAMPLE or len(previous) < RELIABILITY_TREND_MIN_SAMPLE:
+        st.info(
+            f"Pas encore assez de prédictions évaluées ({len(trend)} au total) pour une tendance fiable. "
+            f"Il faut au moins {RELIABILITY_TREND_MIN_SAMPLE} prédictions évaluées sur les "
+            f"{RELIABILITY_TREND_WINDOW_DAYS} derniers jours et sur la période précédente."
+        )
+    else:
+        recent_accuracy = float(recent["is_correct_bool"].mean())
+        previous_accuracy = float(previous["is_correct_bool"].mean())
+        accuracy_drift = recent_accuracy - previous_accuracy
+        recent_brier = recent["brier_score_1N2"].mean()
+        previous_brier = previous["brier_score_1N2"].mean()
+
+        trend_cols = st.columns(3)
+        trend_cols[0].metric(
+            f"Accuracy {RELIABILITY_TREND_WINDOW_DAYS}j glissants",
+            percent(recent_accuracy),
+            delta=f"{accuracy_drift * 100:+.1f} pts vs période précédente",
+        )
+        trend_cols[1].metric(
+            f"Brier moyen {RELIABILITY_TREND_WINDOW_DAYS}j glissants",
+            f"{recent_brier:.4f}" if pd.notna(recent_brier) else "not_available",
+            delta=(
+                f"{(recent_brier - previous_brier):+.4f}"
+                if pd.notna(recent_brier) and pd.notna(previous_brier)
+                else None
+            ),
+            delta_color="inverse",
+        )
+        trend_cols[2].metric("Prédictions évaluées (fenêtre)", len(recent))
+
+        if accuracy_drift <= -RELIABILITY_DRIFT_ALERT_THRESHOLD:
+            st.warning(
+                f"Dérive détectée : l'accuracy sur les {RELIABILITY_TREND_WINDOW_DAYS} derniers jours "
+                f"({percent(recent_accuracy)}) est en baisse de {abs(accuracy_drift) * 100:.1f} points par "
+                f"rapport à la période précédente ({percent(previous_accuracy)}). Regarde si un championnat "
+                "ou un profil de match tire ces résultats vers le bas dans le tableau ci-dessous."
+            )
+
+    weekly_accuracy = trend.set_index("match_date").resample("W")["is_correct_bool"].mean().dropna()
+    if len(weekly_accuracy) >= 2:
+        st.caption("Accuracy hebdomadaire (toutes prédictions évaluées, selon les filtres ci-dessus)")
+        st.line_chart(weekly_accuracy.rename("accuracy"))
+
+
 def render_predictions_evaluation_tab() -> None:
     """Render evaluated upcoming predictions."""
     if st.button("Rafraichir les evaluations"):
@@ -3606,6 +3676,8 @@ def render_predictions_evaluation_tab() -> None:
         cols[3].metric("Accuracy evaluee", percent(float(accuracy)))
         cols[4].metric("Brier moyen", f"{mean_brier:.4f}" if pd.notna(mean_brier) else "not_available")
         cols[5].metric("Log loss moyen", f"{mean_log_loss:.4f}" if pd.notna(mean_log_loss) else "not_available")
+
+    render_reliability_trend(evaluated)
 
     display_columns = [column for column in EVALUATION_TABLE_COLUMNS if column in filtered.columns]
     if not display_columns:

@@ -1,0 +1,66 @@
+name: Refresh Ligue 1 API-Football data
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "Saison API-Football (ex: 2026 pour 2026-2027)"
+        required: false
+        default: "2026"
+      limit_fixtures:
+        description: "Limiter le nombre de matchs traites (laisser vide pour tout traiter)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+env:
+  API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Cache API-Football raw responses
+        uses: actions/cache@v4
+        with:
+          path: data/external/api_football
+          key: api-football-ligue1-${{ inputs.season }}
+
+      - name: Check API-Football connectivity and plan coverage
+        run: python scripts/test_api_football_connection.py --endpoint /status
+
+      - name: Run Ligue 1 API-Football pipeline
+        run: |
+          EXTRA_ARGS=""
+          if [ -n "${{ inputs.limit_fixtures }}" ]; then
+            EXTRA_ARGS="--limit-fixtures ${{ inputs.limit_fixtures }}"
+          fi
+          python scripts/update_ligue1_api_football_pipeline.py --season ${{ inputs.season }} --league-id 61 $EXTRA_ARGS
+
+      - name: Build lineup strength features
+        run: python scripts/build_api_football_ligue1_lineup_strength_features.py --season ${{ inputs.season }} --league-id 61
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/processed/api_football_ligue1_*.csv
+          if git diff --cached --quiet; then
+            echo "No changes to Ligue 1 API-Football features."
+            exit 0
+          fi
+          git commit -m "Refresh Ligue 1 API-Football features (automated)"
+          git push

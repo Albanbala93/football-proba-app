@@ -28,6 +28,8 @@ def normalize_team_name(value: Any) -> str:
     aliases = {
         "stadebrestois29": "brest",
         "parissaintgermain": "psg",
+        "parissg": "psg",
+        "stetienne": "saintetienne",
         "parisfc": "parisfc",
         "lehavre": "lehavre",
     }

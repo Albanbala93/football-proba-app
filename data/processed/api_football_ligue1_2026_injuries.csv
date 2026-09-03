@@ -1,0 +1,326 @@
+fixture_id,league_id,season,team_id,team_name,player_id,player_name,type,reason,date
+1552742,61,2026,91,Monaco,138835,F. Balogun,Missing Fixture,Injury,2026-08-30T18:45:00+00:00
+1552742,61,2026,91,Monaco,135775,A. Fati,Missing Fixture,Calf Injury,2026-08-30T18:45:00+00:00
+1552742,61,2026,91,Monaco,1101,T. Minamino,Missing Fixture,Knee Injury,2026-08-30T18:45:00+00:00
+1552742,61,2026,91,Monaco,47480,M. Salisu,Missing Fixture,Knee Injury,2026-08-30T18:45:00+00:00
+1552742,61,2026,81,Marseille,9363,I. Paixao,Missing Fixture,Muscle Injury,2026-08-30T18:45:00+00:00
+1552744,61,2026,94,Rennes,21628,B. Samba,Missing Fixture,Muscle Injury,2026-08-30T15:15:00+00:00
+1552744,61,2026,1298,Le Mans,363226,R. Bamba,Missing Fixture,Loan agreement,2026-08-30T15:15:00+00:00
+1552744,61,2026,1298,Le Mans,174939,E. Colas,Missing Fixture,Inactive,2026-08-30T15:15:00+00:00
+1552744,61,2026,1298,Le Mans,138828,Y. Larouci,Missing Fixture,Concussion,2026-08-30T15:15:00+00:00
+1552744,61,2026,1298,Le Mans,20602,S. Yohou,Missing Fixture,Thigh Injury,2026-08-30T15:15:00+00:00
+1552743,61,2026,114,Paris FC,22229,J. Ikone,Missing Fixture,Hamstring Injury,2026-08-30T13:00:00+00:00
+1552743,61,2026,114,Paris FC,359603,L. Koleosho,Missing Fixture,Injury,2026-08-30T13:00:00+00:00
+1552743,61,2026,114,Paris FC,490981,E. Mbemba,Missing Fixture,Inactive,2026-08-30T13:00:00+00:00
+1552743,61,2026,114,Paris FC,389322,N. Sangui,Missing Fixture,Injury,2026-08-30T13:00:00+00:00
+1552743,61,2026,84,Nice,49583,A. Abdi,Missing Fixture,Surgery,2026-08-30T13:00:00+00:00
+1552743,61,2026,84,Nice,20917,L. Abergel,Missing Fixture,Knee Injury,2026-08-30T13:00:00+00:00
+1552743,61,2026,84,Nice,407017,M. Bombito,Missing Fixture,Leg Injury,2026-08-30T13:00:00+00:00
+1552743,61,2026,84,Nice,1914,M. Sanson,Missing Fixture,Surgery,2026-08-30T13:00:00+00:00
+1552738,61,2026,108,Auxerre,30748,A. Diousse,Missing Fixture,Knee Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,193505,S. Fofana,Missing Fixture,Groin Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,412926,C. Makosso,Missing Fixture,Red Card,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,115588,B. Okoh,Missing Fixture,Knee Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,191240,M. Senaya,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,31016,F. Sierralta,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,511151,Wei Xiangxin,Missing Fixture,Inactive,2026-08-29T18:45:00+00:00
+1552738,61,2026,77,Angers,20554,H. Belkebla,Missing Fixture,Thigh Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,77,Angers,289555,L. Mouton,Missing Fixture,Knee Injury,2026-08-29T18:45:00+00:00
+1552739,61,2026,106,Stade Brestois 29,369556,J. Bourgault,Missing Fixture,Knee Injury,2026-08-29T18:45:00+00:00
+1552739,61,2026,106,Stade Brestois 29,20546,B. Chardonnet,Missing Fixture,Calf Injury,2026-08-29T18:45:00+00:00
+1552739,61,2026,96,Toulouse,39115,A. Donnum,Missing Fixture,Personal Reasons,2026-08-29T18:45:00+00:00
+1552739,61,2026,96,Toulouse,118345,A. Francis,Missing Fixture,Muscle Injury,2026-08-29T18:45:00+00:00
+1552740,61,2026,97,Lorient,200873,M. Bamba,Missing Fixture,Lacking Match Fitness,2026-08-29T18:45:00+00:00
+1552740,61,2026,110,Estac Troyes,174596,I. Boura,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552740,61,2026,110,Estac Troyes,345107,A. Fatah,Missing Fixture,Hamstring Injury,2026-08-29T18:45:00+00:00
+1552740,61,2026,110,Estac Troyes,395810,Y. Titi,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552741,61,2026,80,Lyon,368230,J. Duranville,Missing Fixture,Muscle Injury,2026-08-29T18:45:00+00:00
+1552741,61,2026,80,Lyon,497617,R. Himbert,Missing Fixture,Inactive,2026-08-29T18:45:00+00:00
+1552741,61,2026,80,Lyon,493026,N. Kamara,Missing Fixture,Inactive,2026-08-29T18:45:00+00:00
+1552741,61,2026,80,Lyon,193293,R. Kluivert,Missing Fixture,Inactive,2026-08-29T18:45:00+00:00
+1552741,61,2026,111,Le Havre,961,F. Mambimbi,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552741,61,2026,111,Le Havre,21103,A. Toure,Missing Fixture,Knee Injury,2026-08-29T18:45:00+00:00
+1552741,61,2026,111,Le Havre,513415,S. Zagadou,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552745,61,2026,95,Strasbourg,2933,B. Chilwell,Missing Fixture,Hamstring Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,95,Strasbourg,271542,I. Doukoure,Missing Fixture,Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,95,Strasbourg,415431,S. El Mourabet,Missing Fixture,Red Card,2026-08-29T15:15:00+00:00
+1552745,61,2026,95,Strasbourg,359386,M. Godo,Missing Fixture,Muscle Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,95,Strasbourg,303016,M. Oyedele,Missing Fixture,Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,95,Strasbourg,390742,J. Panichelli,Missing Fixture,Knee Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,44594,S. Abdulhamid,Missing Fixture,Contusion,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,441264,K. Antonio,Missing Fixture,Red Card,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,322984,S. Baidoo,Missing Fixture,Knee Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,237191,J. Chavez,Missing Fixture,Thigh Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,1135,O. Edouard,Missing Fixture,Personal Reasons,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,21635,J. Gradit,Missing Fixture,Thigh Injury,2026-08-29T15:15:00+00:00
+1552746,61,2026,79,Lille,340077,M. Fernandez-Pardo,Missing Fixture,Transfer negotiations,2026-08-28T18:45:00+00:00
+1552746,61,2026,79,Lille,306979,H. Igamane,Missing Fixture,Knee Injury,2026-08-28T18:45:00+00:00
+1552746,61,2026,79,Lille,133110,T. Nianzou,Missing Fixture,Injury,2026-08-28T18:45:00+00:00
+1552746,61,2026,85,Paris Saint Germain,161904,B. Barcola,Missing Fixture,Inactive,2026-08-28T18:45:00+00:00
+1552746,61,2026,85,Paris Saint Germain,153,O. Dembele,Missing Fixture,Rest,2026-08-28T18:45:00+00:00
+1552746,61,2026,85,Paris Saint Germain,446249,I. Mbaye,Missing Fixture,Inactive,2026-08-28T18:45:00+00:00
+1552746,61,2026,85,Paris Saint Germain,263482,N. Mendes,Missing Fixture,Red Card,2026-08-28T18:45:00+00:00
+1552746,61,2026,85,Paris Saint Germain,335051,J. Neves,Missing Fixture,Illness,2026-08-28T18:45:00+00:00
+1552735,61,2026,94,Rennes,24147,M. Camara,Missing Fixture,Yellow Cards,2026-08-23T18:45:00+00:00
+1552735,61,2026,94,Rennes,30807,S. Fofana,Missing Fixture,Inactive,2026-08-23T18:45:00+00:00
+1552735,61,2026,85,Paris Saint Germain,161904,B. Barcola,Missing Fixture,Inactive,2026-08-23T18:45:00+00:00
+1552735,61,2026,85,Paris Saint Germain,446249,I. Mbaye,Missing Fixture,Inactive,2026-08-23T18:45:00+00:00
+1552735,61,2026,85,Paris Saint Germain,263482,N. Mendes,Missing Fixture,Red Card,2026-08-23T18:45:00+00:00
+1552730,61,2026,111,Le Havre,961,F. Mambimbi,Missing Fixture,Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,111,Le Havre,21103,A. Toure,Missing Fixture,Knee Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,111,Le Havre,513415,S. Zagadou,Missing Fixture,Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,161622,M. Abline,Missing Fixture,Foot Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,138835,F. Balogun,Missing Fixture,Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,374361,E. Diop,Missing Fixture,Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,135775,A. Fati,Missing Fixture,Calf Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,371916,C. Mawissa,Missing Fixture,Yellow Cards,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,1101,T. Minamino,Missing Fixture,Knee Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,47480,M. Salisu,Missing Fixture,Knee Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,231,J. Teze,Missing Fixture,Muscle Injury,2026-08-23T15:15:00+00:00
+1552729,61,2026,77,Angers,20554,H. Belkebla,Missing Fixture,Thigh Injury,2026-08-23T13:00:00+00:00
+1552729,61,2026,77,Angers,289555,L. Mouton,Missing Fixture,Knee Injury,2026-08-23T13:00:00+00:00
+1552729,61,2026,79,Lille,2204,B. Andre,Missing Fixture,Yellow Cards,2026-08-23T13:00:00+00:00
+1552729,61,2026,79,Lille,340077,M. Fernandez-Pardo,Missing Fixture,Yellow Cards,2026-08-23T13:00:00+00:00
+1552729,61,2026,79,Lille,306979,H. Igamane,Missing Fixture,Knee Injury,2026-08-23T13:00:00+00:00
+1552729,61,2026,79,Lille,133110,T. Nianzou,Missing Fixture,Injury,2026-08-23T13:00:00+00:00
+1552731,61,2026,1298,Le Mans,174605,H. Voyer,Missing Fixture,Yellow Cards,2026-08-22T18:45:00+00:00
+1552731,61,2026,106,Stade Brestois 29,20546,B. Chardonnet,Missing Fixture,Calf Injury,2026-08-22T18:45:00+00:00
+1552731,61,2026,106,Stade Brestois 29,20558,H. Magnetti,Missing Fixture,Muscle Injury,2026-08-22T18:45:00+00:00
+1552734,61,2026,84,Nice,20917,L. Abergel,Missing Fixture,Knee Injury,2026-08-22T18:45:00+00:00
+1552734,61,2026,84,Nice,407017,M. Bombito,Missing Fixture,Leg Injury,2026-08-22T18:45:00+00:00
+1552734,61,2026,84,Nice,69971,T. Moffi,Missing Fixture,Inactive,2026-08-22T18:45:00+00:00
+1552734,61,2026,84,Nice,20,A. Witsel,Missing Fixture,Inactive,2026-08-22T18:45:00+00:00
+1552734,61,2026,97,Lorient,200873,M. Bamba,Missing Fixture,Lacking Match Fitness,2026-08-22T18:45:00+00:00
+1552736,61,2026,96,Toulouse,39115,A. Donnum,Missing Fixture,Personal Reasons,2026-08-22T18:45:00+00:00
+1552736,61,2026,96,Toulouse,118345,A. Francis,Missing Fixture,Muscle Injury,2026-08-22T18:45:00+00:00
+1552736,61,2026,96,Toulouse,514464,A. Vossah,Missing Fixture,Yellow Cards,2026-08-22T18:45:00+00:00
+1552736,61,2026,80,Lyon,9700,Abner Vinicius,Missing Fixture,Rest,2026-08-22T18:45:00+00:00
+1552736,61,2026,80,Lyon,193293,R. Kluivert,Missing Fixture,Rest,2026-08-22T18:45:00+00:00
+1552736,61,2026,80,Lyon,1456,A. Maitland-Niles,Missing Fixture,Rest,2026-08-22T18:45:00+00:00
+1552736,61,2026,80,Lyon,519664,K. Merah,Missing Fixture,Ankle Injury,2026-08-22T18:45:00+00:00
+1552736,61,2026,80,Lyon,25916,M. Niakhate,Missing Fixture,Ankle Injury,2026-08-22T18:45:00+00:00
+1552737,61,2026,110,Estac Troyes,174596,I. Boura,Missing Fixture,Injury,2026-08-22T18:45:00+00:00
+1552737,61,2026,110,Estac Troyes,345107,A. Fatah,Missing Fixture,Hamstring Injury,2026-08-22T18:45:00+00:00
+1552737,61,2026,114,Paris FC,22229,J. Ikone,Missing Fixture,Hamstring Injury,2026-08-22T18:45:00+00:00
+1552737,61,2026,114,Paris FC,490981,E. Mbemba,Missing Fixture,Inactive,2026-08-22T18:45:00+00:00
+1552737,61,2026,114,Paris FC,389322,N. Sangui,Missing Fixture,Injury,2026-08-22T18:45:00+00:00
+1552732,61,2026,116,Lens,441264,K. Antonio,Missing Fixture,Red Card,2026-08-22T15:15:00+00:00
+1552732,61,2026,116,Lens,322984,S. Baidoo,Missing Fixture,Knee Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,116,Lens,395589,N. Celik,Missing Fixture,Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,116,Lens,237191,J. Chavez,Missing Fixture,Thigh Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,116,Lens,21635,J. Gradit,Missing Fixture,Thigh Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,51293,T. Bair,Missing Fixture,Suspended,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,30748,A. Diousse,Missing Fixture,Knee Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,193505,S. Fofana,Missing Fixture,Groin Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,326073,R. Labeau Lascary,Missing Fixture,Loan agreement,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,115588,B. Okoh,Missing Fixture,Knee Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,191240,M. Senaya,Missing Fixture,Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,31016,F. Sierralta,Missing Fixture,Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,402542,T. Siwe,Missing Fixture,Thigh Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,511151,Wei Xiangxin,Missing Fixture,Inactive,2026-08-22T15:15:00+00:00
+1552754,61,2026,96,Toulouse,118345,A. Francis,Missing Fixture,Muscle Injury,2026-09-03T18:45:00+00:00
+1552754,61,2026,96,Toulouse,416901,N. Sigur,Missing Fixture,Transfer negotiations,2026-09-03T18:45:00+00:00
+1552754,61,2026,96,Toulouse,39115,A. Donnum,Questionable,Personal Reasons,2026-09-03T18:45:00+00:00
+1552754,61,2026,79,Lille,306979,H. Igamane,Missing Fixture,Knee Injury,2026-09-03T18:45:00+00:00
+1552754,61,2026,79,Lille,133110,T. Nianzou,Questionable,Injury,2026-09-03T18:45:00+00:00
+1552750,61,2026,80,Lyon,368230,J. Duranville,Questionable,Muscle Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,30748,A. Diousse,Missing Fixture,Knee Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,193505,S. Fofana,Missing Fixture,Groin Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,115588,B. Okoh,Missing Fixture,Knee Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,191240,M. Senaya,Missing Fixture,Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,31016,F. Sierralta,Missing Fixture,Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,19182,A. Tuanzebe,Missing Fixture,Lacking Match Fitness,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,215827,F. Oppegard,Questionable,Illness,2026-09-04T17:00:00+00:00
+1552753,61,2026,85,Paris Saint Germain,263482,N. Mendes,Missing Fixture,Red Card,2026-09-04T19:05:00+00:00
+1552753,61,2026,91,Monaco,138835,F. Balogun,Missing Fixture,Injury,2026-09-04T19:05:00+00:00
+1552753,61,2026,91,Monaco,135775,A. Fati,Missing Fixture,Calf Injury,2026-09-04T19:05:00+00:00
+1552753,61,2026,91,Monaco,1101,T. Minamino,Missing Fixture,Knee Injury,2026-09-04T19:05:00+00:00
+1552753,61,2026,91,Monaco,47480,M. Salisu,Missing Fixture,Knee Injury,2026-09-04T19:05:00+00:00
+1552749,61,2026,116,Lens,44594,S. Abdulhamid,Missing Fixture,Contusion,2026-09-05T15:15:00+00:00
+1552749,61,2026,116,Lens,322984,S. Baidoo,Missing Fixture,Knee Injury,2026-09-05T15:15:00+00:00
+1552749,61,2026,116,Lens,237191,J. Chavez,Missing Fixture,Thigh Injury,2026-09-05T15:15:00+00:00
+1552749,61,2026,116,Lens,21635,J. Gradit,Missing Fixture,Thigh Injury,2026-09-05T15:15:00+00:00
+1552749,61,2026,116,Lens,178708,M. Nawrocki,Questionable,Injury,2026-09-05T15:15:00+00:00
+1552749,61,2026,97,Lorient,200873,M. Bamba,Missing Fixture,Lacking Match Fitness,2026-09-05T15:15:00+00:00
+1552748,61,2026,111,Le Havre,961,F. Mambimbi,Missing Fixture,Injury,2026-09-05T18:45:00+00:00
+1552748,61,2026,111,Le Havre,21103,A. Toure,Missing Fixture,Knee Injury,2026-09-05T18:45:00+00:00
+1552748,61,2026,111,Le Havre,513415,S. Zagadou,Missing Fixture,Injury,2026-09-05T18:45:00+00:00
+1552748,61,2026,106,Stade Brestois 29,369556,J. Bourgault,Missing Fixture,Knee Injury,2026-09-05T18:45:00+00:00
+1552748,61,2026,106,Stade Brestois 29,20546,B. Chardonnet,Missing Fixture,Calf Injury,2026-09-05T18:45:00+00:00
+1552752,61,2026,84,Nice,49583,A. Abdi,Missing Fixture,Surgery,2026-09-05T18:45:00+00:00
+1552752,61,2026,84,Nice,20917,L. Abergel,Missing Fixture,Knee Injury,2026-09-05T18:45:00+00:00
+1552752,61,2026,84,Nice,200139,M. Amoura,Missing Fixture,Thigh Injury,2026-09-05T18:45:00+00:00
+1552752,61,2026,84,Nice,407017,M. Bombito,Missing Fixture,Leg Injury,2026-09-05T18:45:00+00:00
+1552752,61,2026,84,Nice,1914,M. Sanson,Missing Fixture,Surgery,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,174939,E. Colas,Missing Fixture,Inactive,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,20535,H. Diallo,Missing Fixture,Inactive,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,138828,Y. Larouci,Missing Fixture,Concussion,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,102,D. Sidibe,Missing Fixture,Red Card,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,20602,S. Yohou,Missing Fixture,Thigh Injury,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,24189,N. Kocik,Questionable,Injury,2026-09-05T18:45:00+00:00
+1552742,61,2026,91,Monaco,138835,F. Balogun,Missing Fixture,Injury,2026-08-30T18:45:00+00:00
+1552742,61,2026,91,Monaco,135775,A. Fati,Missing Fixture,Calf Injury,2026-08-30T18:45:00+00:00
+1552742,61,2026,91,Monaco,1101,T. Minamino,Missing Fixture,Knee Injury,2026-08-30T18:45:00+00:00
+1552742,61,2026,91,Monaco,47480,M. Salisu,Missing Fixture,Knee Injury,2026-08-30T18:45:00+00:00
+1552742,61,2026,81,Marseille,9363,I. Paixao,Missing Fixture,Muscle Injury,2026-08-30T18:45:00+00:00
+1552744,61,2026,94,Rennes,21628,B. Samba,Missing Fixture,Muscle Injury,2026-08-30T15:15:00+00:00
+1552744,61,2026,1298,Le Mans,363226,R. Bamba,Missing Fixture,Loan agreement,2026-08-30T15:15:00+00:00
+1552744,61,2026,1298,Le Mans,174939,E. Colas,Missing Fixture,Inactive,2026-08-30T15:15:00+00:00
+1552744,61,2026,1298,Le Mans,138828,Y. Larouci,Missing Fixture,Concussion,2026-08-30T15:15:00+00:00
+1552744,61,2026,1298,Le Mans,20602,S. Yohou,Missing Fixture,Thigh Injury,2026-08-30T15:15:00+00:00
+1552743,61,2026,114,Paris FC,22229,J. Ikone,Missing Fixture,Hamstring Injury,2026-08-30T13:00:00+00:00
+1552743,61,2026,114,Paris FC,359603,L. Koleosho,Missing Fixture,Injury,2026-08-30T13:00:00+00:00
+1552743,61,2026,114,Paris FC,490981,E. Mbemba,Missing Fixture,Inactive,2026-08-30T13:00:00+00:00
+1552743,61,2026,114,Paris FC,389322,N. Sangui,Missing Fixture,Injury,2026-08-30T13:00:00+00:00
+1552743,61,2026,84,Nice,49583,A. Abdi,Missing Fixture,Surgery,2026-08-30T13:00:00+00:00
+1552743,61,2026,84,Nice,20917,L. Abergel,Missing Fixture,Knee Injury,2026-08-30T13:00:00+00:00
+1552743,61,2026,84,Nice,407017,M. Bombito,Missing Fixture,Leg Injury,2026-08-30T13:00:00+00:00
+1552743,61,2026,84,Nice,1914,M. Sanson,Missing Fixture,Surgery,2026-08-30T13:00:00+00:00
+1552738,61,2026,108,Auxerre,30748,A. Diousse,Missing Fixture,Knee Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,193505,S. Fofana,Missing Fixture,Groin Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,412926,C. Makosso,Missing Fixture,Red Card,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,115588,B. Okoh,Missing Fixture,Knee Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,191240,M. Senaya,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,31016,F. Sierralta,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,108,Auxerre,511151,Wei Xiangxin,Missing Fixture,Inactive,2026-08-29T18:45:00+00:00
+1552738,61,2026,77,Angers,20554,H. Belkebla,Missing Fixture,Thigh Injury,2026-08-29T18:45:00+00:00
+1552738,61,2026,77,Angers,289555,L. Mouton,Missing Fixture,Knee Injury,2026-08-29T18:45:00+00:00
+1552739,61,2026,106,Stade Brestois 29,369556,J. Bourgault,Missing Fixture,Knee Injury,2026-08-29T18:45:00+00:00
+1552739,61,2026,106,Stade Brestois 29,20546,B. Chardonnet,Missing Fixture,Calf Injury,2026-08-29T18:45:00+00:00
+1552739,61,2026,96,Toulouse,39115,A. Donnum,Missing Fixture,Personal Reasons,2026-08-29T18:45:00+00:00
+1552739,61,2026,96,Toulouse,118345,A. Francis,Missing Fixture,Muscle Injury,2026-08-29T18:45:00+00:00
+1552740,61,2026,97,Lorient,200873,M. Bamba,Missing Fixture,Lacking Match Fitness,2026-08-29T18:45:00+00:00
+1552740,61,2026,110,Estac Troyes,174596,I. Boura,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552740,61,2026,110,Estac Troyes,345107,A. Fatah,Missing Fixture,Hamstring Injury,2026-08-29T18:45:00+00:00
+1552740,61,2026,110,Estac Troyes,395810,Y. Titi,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552741,61,2026,80,Lyon,368230,J. Duranville,Missing Fixture,Muscle Injury,2026-08-29T18:45:00+00:00
+1552741,61,2026,80,Lyon,497617,R. Himbert,Missing Fixture,Inactive,2026-08-29T18:45:00+00:00
+1552741,61,2026,80,Lyon,493026,N. Kamara,Missing Fixture,Inactive,2026-08-29T18:45:00+00:00
+1552741,61,2026,80,Lyon,193293,R. Kluivert,Missing Fixture,Inactive,2026-08-29T18:45:00+00:00
+1552741,61,2026,111,Le Havre,961,F. Mambimbi,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552741,61,2026,111,Le Havre,21103,A. Toure,Missing Fixture,Knee Injury,2026-08-29T18:45:00+00:00
+1552741,61,2026,111,Le Havre,513415,S. Zagadou,Missing Fixture,Injury,2026-08-29T18:45:00+00:00
+1552745,61,2026,95,Strasbourg,2933,B. Chilwell,Missing Fixture,Hamstring Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,95,Strasbourg,271542,I. Doukoure,Missing Fixture,Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,95,Strasbourg,415431,S. El Mourabet,Missing Fixture,Red Card,2026-08-29T15:15:00+00:00
+1552745,61,2026,95,Strasbourg,359386,M. Godo,Missing Fixture,Muscle Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,95,Strasbourg,303016,M. Oyedele,Missing Fixture,Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,95,Strasbourg,390742,J. Panichelli,Missing Fixture,Knee Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,44594,S. Abdulhamid,Missing Fixture,Contusion,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,441264,K. Antonio,Missing Fixture,Red Card,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,322984,S. Baidoo,Missing Fixture,Knee Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,237191,J. Chavez,Missing Fixture,Thigh Injury,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,1135,O. Edouard,Missing Fixture,Personal Reasons,2026-08-29T15:15:00+00:00
+1552745,61,2026,116,Lens,21635,J. Gradit,Missing Fixture,Thigh Injury,2026-08-29T15:15:00+00:00
+1552746,61,2026,79,Lille,340077,M. Fernandez-Pardo,Missing Fixture,Transfer negotiations,2026-08-28T18:45:00+00:00
+1552746,61,2026,79,Lille,306979,H. Igamane,Missing Fixture,Knee Injury,2026-08-28T18:45:00+00:00
+1552746,61,2026,79,Lille,133110,T. Nianzou,Missing Fixture,Injury,2026-08-28T18:45:00+00:00
+1552746,61,2026,85,Paris Saint Germain,161904,B. Barcola,Missing Fixture,Inactive,2026-08-28T18:45:00+00:00
+1552746,61,2026,85,Paris Saint Germain,153,O. Dembele,Missing Fixture,Rest,2026-08-28T18:45:00+00:00
+1552746,61,2026,85,Paris Saint Germain,446249,I. Mbaye,Missing Fixture,Inactive,2026-08-28T18:45:00+00:00
+1552746,61,2026,85,Paris Saint Germain,263482,N. Mendes,Missing Fixture,Red Card,2026-08-28T18:45:00+00:00
+1552746,61,2026,85,Paris Saint Germain,335051,J. Neves,Missing Fixture,Illness,2026-08-28T18:45:00+00:00
+1552735,61,2026,94,Rennes,24147,M. Camara,Missing Fixture,Yellow Cards,2026-08-23T18:45:00+00:00
+1552735,61,2026,94,Rennes,30807,S. Fofana,Missing Fixture,Inactive,2026-08-23T18:45:00+00:00
+1552735,61,2026,85,Paris Saint Germain,161904,B. Barcola,Missing Fixture,Inactive,2026-08-23T18:45:00+00:00
+1552735,61,2026,85,Paris Saint Germain,446249,I. Mbaye,Missing Fixture,Inactive,2026-08-23T18:45:00+00:00
+1552735,61,2026,85,Paris Saint Germain,263482,N. Mendes,Missing Fixture,Red Card,2026-08-23T18:45:00+00:00
+1552730,61,2026,111,Le Havre,961,F. Mambimbi,Missing Fixture,Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,111,Le Havre,21103,A. Toure,Missing Fixture,Knee Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,111,Le Havre,513415,S. Zagadou,Missing Fixture,Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,161622,M. Abline,Missing Fixture,Foot Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,138835,F. Balogun,Missing Fixture,Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,374361,E. Diop,Missing Fixture,Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,135775,A. Fati,Missing Fixture,Calf Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,371916,C. Mawissa,Missing Fixture,Yellow Cards,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,1101,T. Minamino,Missing Fixture,Knee Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,47480,M. Salisu,Missing Fixture,Knee Injury,2026-08-23T15:15:00+00:00
+1552730,61,2026,91,Monaco,231,J. Teze,Missing Fixture,Muscle Injury,2026-08-23T15:15:00+00:00
+1552729,61,2026,77,Angers,20554,H. Belkebla,Missing Fixture,Thigh Injury,2026-08-23T13:00:00+00:00
+1552729,61,2026,77,Angers,289555,L. Mouton,Missing Fixture,Knee Injury,2026-08-23T13:00:00+00:00
+1552729,61,2026,79,Lille,2204,B. Andre,Missing Fixture,Yellow Cards,2026-08-23T13:00:00+00:00
+1552729,61,2026,79,Lille,340077,M. Fernandez-Pardo,Missing Fixture,Yellow Cards,2026-08-23T13:00:00+00:00
+1552729,61,2026,79,Lille,306979,H. Igamane,Missing Fixture,Knee Injury,2026-08-23T13:00:00+00:00
+1552729,61,2026,79,Lille,133110,T. Nianzou,Missing Fixture,Injury,2026-08-23T13:00:00+00:00
+1552731,61,2026,1298,Le Mans,174605,H. Voyer,Missing Fixture,Yellow Cards,2026-08-22T18:45:00+00:00
+1552731,61,2026,106,Stade Brestois 29,20546,B. Chardonnet,Missing Fixture,Calf Injury,2026-08-22T18:45:00+00:00
+1552731,61,2026,106,Stade Brestois 29,20558,H. Magnetti,Missing Fixture,Muscle Injury,2026-08-22T18:45:00+00:00
+1552734,61,2026,84,Nice,20917,L. Abergel,Missing Fixture,Knee Injury,2026-08-22T18:45:00+00:00
+1552734,61,2026,84,Nice,407017,M. Bombito,Missing Fixture,Leg Injury,2026-08-22T18:45:00+00:00
+1552734,61,2026,84,Nice,69971,T. Moffi,Missing Fixture,Inactive,2026-08-22T18:45:00+00:00
+1552734,61,2026,84,Nice,20,A. Witsel,Missing Fixture,Inactive,2026-08-22T18:45:00+00:00
+1552734,61,2026,97,Lorient,200873,M. Bamba,Missing Fixture,Lacking Match Fitness,2026-08-22T18:45:00+00:00
+1552736,61,2026,96,Toulouse,39115,A. Donnum,Missing Fixture,Personal Reasons,2026-08-22T18:45:00+00:00
+1552736,61,2026,96,Toulouse,118345,A. Francis,Missing Fixture,Muscle Injury,2026-08-22T18:45:00+00:00
+1552736,61,2026,96,Toulouse,514464,A. Vossah,Missing Fixture,Yellow Cards,2026-08-22T18:45:00+00:00
+1552736,61,2026,80,Lyon,9700,Abner Vinicius,Missing Fixture,Rest,2026-08-22T18:45:00+00:00
+1552736,61,2026,80,Lyon,193293,R. Kluivert,Missing Fixture,Rest,2026-08-22T18:45:00+00:00
+1552736,61,2026,80,Lyon,1456,A. Maitland-Niles,Missing Fixture,Rest,2026-08-22T18:45:00+00:00
+1552736,61,2026,80,Lyon,519664,K. Merah,Missing Fixture,Ankle Injury,2026-08-22T18:45:00+00:00
+1552736,61,2026,80,Lyon,25916,M. Niakhate,Missing Fixture,Ankle Injury,2026-08-22T18:45:00+00:00
+1552737,61,2026,110,Estac Troyes,174596,I. Boura,Missing Fixture,Injury,2026-08-22T18:45:00+00:00
+1552737,61,2026,110,Estac Troyes,345107,A. Fatah,Missing Fixture,Hamstring Injury,2026-08-22T18:45:00+00:00
+1552737,61,2026,114,Paris FC,22229,J. Ikone,Missing Fixture,Hamstring Injury,2026-08-22T18:45:00+00:00
+1552737,61,2026,114,Paris FC,490981,E. Mbemba,Missing Fixture,Inactive,2026-08-22T18:45:00+00:00
+1552737,61,2026,114,Paris FC,389322,N. Sangui,Missing Fixture,Injury,2026-08-22T18:45:00+00:00
+1552732,61,2026,116,Lens,441264,K. Antonio,Missing Fixture,Red Card,2026-08-22T15:15:00+00:00
+1552732,61,2026,116,Lens,322984,S. Baidoo,Missing Fixture,Knee Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,116,Lens,395589,N. Celik,Missing Fixture,Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,116,Lens,237191,J. Chavez,Missing Fixture,Thigh Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,116,Lens,21635,J. Gradit,Missing Fixture,Thigh Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,51293,T. Bair,Missing Fixture,Suspended,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,30748,A. Diousse,Missing Fixture,Knee Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,193505,S. Fofana,Missing Fixture,Groin Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,326073,R. Labeau Lascary,Missing Fixture,Loan agreement,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,115588,B. Okoh,Missing Fixture,Knee Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,191240,M. Senaya,Missing Fixture,Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,31016,F. Sierralta,Missing Fixture,Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,402542,T. Siwe,Missing Fixture,Thigh Injury,2026-08-22T15:15:00+00:00
+1552732,61,2026,108,Auxerre,511151,Wei Xiangxin,Missing Fixture,Inactive,2026-08-22T15:15:00+00:00
+1552733,61,2026,81,Marseille,6,L. Balerdi,Missing Fixture,Calf Injury,2026-08-21T18:45:00+00:00
+1552733,61,2026,81,Marseille,102447,F. Moumbagna,Missing Fixture,Injury,2026-08-21T18:45:00+00:00
+1552733,61,2026,81,Marseille,38747,Q. Timber,Missing Fixture,Yellow Cards,2026-08-21T18:45:00+00:00
+1552733,61,2026,95,Strasbourg,2933,B. Chilwell,Missing Fixture,Hamstring Injury,2026-08-21T18:45:00+00:00
+1552733,61,2026,95,Strasbourg,271542,I. Doukoure,Missing Fixture,Injury,2026-08-21T18:45:00+00:00
+1552733,61,2026,95,Strasbourg,359386,M. Godo,Missing Fixture,Muscle Injury,2026-08-21T18:45:00+00:00
+1552733,61,2026,95,Strasbourg,390742,J. Panichelli,Missing Fixture,Knee Injury,2026-08-21T18:45:00+00:00
+1552754,61,2026,96,Toulouse,118345,A. Francis,Missing Fixture,Muscle Injury,2026-09-03T18:45:00+00:00
+1552754,61,2026,96,Toulouse,416901,N. Sigur,Missing Fixture,Transfer negotiations,2026-09-03T18:45:00+00:00
+1552754,61,2026,96,Toulouse,39115,A. Donnum,Questionable,Personal Reasons,2026-09-03T18:45:00+00:00
+1552754,61,2026,79,Lille,306979,H. Igamane,Missing Fixture,Knee Injury,2026-09-03T18:45:00+00:00
+1552754,61,2026,79,Lille,133110,T. Nianzou,Questionable,Injury,2026-09-03T18:45:00+00:00
+1552750,61,2026,80,Lyon,368230,J. Duranville,Questionable,Muscle Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,30748,A. Diousse,Missing Fixture,Knee Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,193505,S. Fofana,Missing Fixture,Groin Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,115588,B. Okoh,Missing Fixture,Knee Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,191240,M. Senaya,Missing Fixture,Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,31016,F. Sierralta,Missing Fixture,Injury,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,19182,A. Tuanzebe,Missing Fixture,Lacking Match Fitness,2026-09-04T17:00:00+00:00
+1552750,61,2026,108,Auxerre,215827,F. Oppegard,Questionable,Illness,2026-09-04T17:00:00+00:00
+1552753,61,2026,85,Paris Saint Germain,263482,N. Mendes,Missing Fixture,Red Card,2026-09-04T19:05:00+00:00
+1552753,61,2026,91,Monaco,138835,F. Balogun,Missing Fixture,Injury,2026-09-04T19:05:00+00:00
+1552753,61,2026,91,Monaco,135775,A. Fati,Missing Fixture,Calf Injury,2026-09-04T19:05:00+00:00
+1552753,61,2026,91,Monaco,1101,T. Minamino,Missing Fixture,Knee Injury,2026-09-04T19:05:00+00:00
+1552753,61,2026,91,Monaco,47480,M. Salisu,Missing Fixture,Knee Injury,2026-09-04T19:05:00+00:00
+1552749,61,2026,116,Lens,44594,S. Abdulhamid,Missing Fixture,Contusion,2026-09-05T15:15:00+00:00
+1552749,61,2026,116,Lens,322984,S. Baidoo,Missing Fixture,Knee Injury,2026-09-05T15:15:00+00:00
+1552749,61,2026,116,Lens,237191,J. Chavez,Missing Fixture,Thigh Injury,2026-09-05T15:15:00+00:00
+1552749,61,2026,116,Lens,21635,J. Gradit,Missing Fixture,Thigh Injury,2026-09-05T15:15:00+00:00
+1552749,61,2026,116,Lens,178708,M. Nawrocki,Questionable,Injury,2026-09-05T15:15:00+00:00
+1552749,61,2026,97,Lorient,200873,M. Bamba,Missing Fixture,Lacking Match Fitness,2026-09-05T15:15:00+00:00
+1552748,61,2026,111,Le Havre,961,F. Mambimbi,Missing Fixture,Injury,2026-09-05T18:45:00+00:00
+1552748,61,2026,111,Le Havre,21103,A. Toure,Missing Fixture,Knee Injury,2026-09-05T18:45:00+00:00
+1552748,61,2026,111,Le Havre,513415,S. Zagadou,Missing Fixture,Injury,2026-09-05T18:45:00+00:00
+1552748,61,2026,106,Stade Brestois 29,369556,J. Bourgault,Missing Fixture,Knee Injury,2026-09-05T18:45:00+00:00
+1552748,61,2026,106,Stade Brestois 29,20546,B. Chardonnet,Missing Fixture,Calf Injury,2026-09-05T18:45:00+00:00
+1552752,61,2026,84,Nice,49583,A. Abdi,Missing Fixture,Surgery,2026-09-05T18:45:00+00:00
+1552752,61,2026,84,Nice,20917,L. Abergel,Missing Fixture,Knee Injury,2026-09-05T18:45:00+00:00
+1552752,61,2026,84,Nice,200139,M. Amoura,Missing Fixture,Thigh Injury,2026-09-05T18:45:00+00:00
+1552752,61,2026,84,Nice,407017,M. Bombito,Missing Fixture,Leg Injury,2026-09-05T18:45:00+00:00
+1552752,61,2026,84,Nice,1914,M. Sanson,Missing Fixture,Surgery,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,174939,E. Colas,Missing Fixture,Inactive,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,20535,H. Diallo,Missing Fixture,Inactive,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,138828,Y. Larouci,Missing Fixture,Concussion,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,102,D. Sidibe,Missing Fixture,Red Card,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,20602,S. Yohou,Missing Fixture,Thigh Injury,2026-09-05T18:45:00+00:00
+1552752,61,2026,1298,Le Mans,24189,N. Kocik,Questionable,Injury,2026-09-05T18:45:00+00:00

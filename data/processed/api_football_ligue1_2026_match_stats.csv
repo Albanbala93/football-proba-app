@@ -1,0 +1,11 @@
+fixture_id,team_id,team_name,is_home,shots_on_goal,shots_off_goal,total_shots,blocked_shots,shots_insidebox,shots_outsidebox,fouls,corner_kicks,offsides,ball_possession,yellow_cards,red_cards,goalkeeper_saves,total_passes,passes_accurate,passes_percentage,expected_goals
+1552733,81,Marseille,True,8,4,14,2,9,5,6,3,,67,1,0.0,2,687,626,91,1.86
+1552733,95,Strasbourg,False,2,3,5,0,3,2,12,4,,33,2,1.0,4,337,286,85,0.18
+1552732,116,Lens,True,9,2,12,1,10,2,6,4,1.0,53,1,0.0,2,470,415,88,4.41
+1552732,108,Auxerre,False,4,3,10,3,5,5,21,7,3.0,47,1,1.0,4,416,338,81,1.84
+1552734,84,Nice,True,1,7,14,6,8,6,15,9,2.0,60,1,,2,630,552,88,1.05
+1552734,97,Lorient,False,2,5,10,3,8,2,8,3,1.0,40,0,,1,418,352,84,1.28
+1552736,96,Toulouse,True,2,12,17,3,12,5,15,6,2.0,48,1,,1,435,371,85,2.77
+1552736,80,Lyon,False,3,5,11,3,7,4,15,5,0.0,52,2,,2,479,416,87,0.7
+1552737,110,Estac Troyes,True,2,5,9,2,7,2,8,6,1.0,42,2,,1,458,384,84,0.42
+1552737,114,Paris FC,False,1,6,10,3,5,5,14,2,2.0,58,1,,2,681,608,89,1.8

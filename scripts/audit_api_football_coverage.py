@@ -269,7 +269,7 @@ def audit_api_football_coverage(
 ) -> dict[str, Any]:
     """Run the API-Football coverage audit and export a JSON report."""
     load_dotenv(PROJECT_ROOT / ".env")
-    api_key = os.getenv("API_FOOTBALL_KEY")
+    api_key = (os.getenv("API_FOOTBALL_KEY") or "").strip()
     if not api_key:
         raise ValueError("API_FOOTBALL_KEY is missing from .env")
 

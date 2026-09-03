@@ -228,7 +228,7 @@ def fetch_api_football_ligue1_data(
 ) -> pd.DataFrame:
     """Fetch fixtures, per-fixture statistics/lineups, injuries, and an index CSV."""
     load_dotenv(PROJECT_ROOT / ".env")
-    api_key = os.getenv("API_FOOTBALL_KEY")
+    api_key = (os.getenv("API_FOOTBALL_KEY") or "").strip()
     if not api_key:
         raise ValueError("API_FOOTBALL_KEY is missing from .env")
 

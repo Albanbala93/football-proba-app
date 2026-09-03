@@ -94,7 +94,7 @@ def _extract_quota(payload: dict[str, Any]) -> dict[str, Any]:
 def test_api_football_connection(endpoint: str = DEFAULT_ENDPOINT) -> int:
     """Call a read-only API-Football endpoint and print a compact diagnostic."""
     load_dotenv(PROJECT_ROOT / ".env")
-    api_key = os.getenv("API_FOOTBALL_KEY")
+    api_key = (os.getenv("API_FOOTBALL_KEY") or "").strip()
     if not api_key:
         print("API-Football connection test")
         print("HTTP status: not_available")

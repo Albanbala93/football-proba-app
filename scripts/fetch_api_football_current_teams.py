@@ -288,7 +288,7 @@ def fetch_current_teams(
 ) -> tuple[pd.DataFrame, dict[str, list[str]]]:
     """Fetch and map current Big 5 rosters. Returns (rows_df, unresolved_by_league)."""
     load_dotenv(PROJECT_ROOT / ".env")
-    api_key = os.getenv("API_FOOTBALL_KEY")
+    api_key = (os.getenv("API_FOOTBALL_KEY") or "").strip()
     if not api_key:
         raise ValueError("API_FOOTBALL_KEY is missing from .env")
 

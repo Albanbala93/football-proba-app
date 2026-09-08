@@ -17,12 +17,17 @@ venv/
 
 # Data generated files
 data/processed/*
-data/predictions/
+data/predictions/*
 
 # Exception: Ligue 1 API-Football derived features are fetched/committed by
 # .github/workflows/refresh-ligue1-api-football.yml, since Streamlit Cloud
 # only has access to what's tracked in git (see ensure_data_ready()).
 !data/processed/api_football_ligue1_*.csv
+
+# Exception: the upcoming-predictions log is committed directly by the app
+# (persist_prediction_log_to_github) so it survives Streamlit Cloud reboots
+# and redeploys, which wipe anything not tracked in git.
+!data/predictions/upcoming_predictions_log.csv
 
 # Models generated files
 models/

@@ -1985,6 +1985,76 @@ def append_upcoming_prediction_log(row: dict[str, Any]) -> None:
     )
 
 
+def _github_repo_slug() -> str | None:
+    """Return 'owner/repo' parsed from the configured git remote, if any."""
+    try:
+        result = subprocess.run(
+            ["git", "remote", "get-url", "origin"],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except Exception:
+        return None
+    if result.returncode != 0:
+        return None
+    match = re.search(r"github\.com[:/]+([^/]+/[^/.]+?)(?:\.git)?$", result.stdout.strip())
+    return match.group(1) if match else None
+
+
+def persist_prediction_log_to_github(commit_message: str) -> None:
+    """Best-effort: commit and push the prediction log so it survives redeploys.
+
+    Streamlit Cloud has no persistent disk: any reboot or auto-redeploy (e.g.
+    the daily data-refresh workflow pushing a new commit) starts from a fresh
+    container and loses anything not committed to git. Requires a
+    GITHUB_TOKEN secret scoped to this repo; silently no-ops (the local file
+    is still saved by append_upcoming_prediction_log) when that secret isn't
+    configured, so local development is unaffected.
+    """
+    try:
+        token = st.secrets.get("GITHUB_TOKEN")
+    except Exception:
+        token = None
+    if not token:
+        return
+
+    repo_slug = _github_repo_slug()
+    if not repo_slug:
+        return
+
+    push_url = f"https://x-access-token:{token}@github.com/{repo_slug}.git"
+    relative_path = str(UPCOMING_PREDICTIONS_LOG_PATH.relative_to(PROJECT_ROOT))
+
+    def run_git(*args: str) -> subprocess.CompletedProcess:
+        return subprocess.run(
+            ["git", *args],
+            cwd=PROJECT_ROOT,
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+
+    run_git("config", "user.name", "football-proba-app")
+    run_git("config", "user.email", "football-proba-app@users.noreply.github.com")
+    run_git("add", relative_path)
+    commit_result = run_git("commit", "-m", commit_message)
+    if commit_result.returncode != 0 and "nothing to commit" in (commit_result.stdout + commit_result.stderr):
+        return
+
+    push_result = run_git("push", push_url, "HEAD:main")
+    if push_result.returncode != 0:
+        run_git("pull", "--no-rebase", push_url, "main")
+        push_result = run_git("push", push_url, "HEAD:main")
+
+    if push_result.returncode != 0:
+        st.warning(
+            "La prédiction est enregistrée localement mais n'a pas pu être synchronisée sur GitHub "
+            "(elle pourrait être perdue au prochain redémarrage de l'app)."
+        )
+
+
 def _prediction_class_from_probabilities(probabilities: dict[str, float]) -> str:
     """Return the top class from a probability dictionary."""
     return max(probabilities, key=probabilities.get)
@@ -2248,6 +2318,10 @@ def render_upcoming_prediction_result(
             state.get("odds_away"),
         )
         append_upcoming_prediction_log(row)
+        persist_prediction_log_to_github(
+            f"Enregistre une prediction : {row.get('home_team')} vs {row.get('away_team')} "
+            f"({row.get('match_date')})"
+        )
         st.success(f"Prediction enregistree dans {UPCOMING_PREDICTIONS_LOG_PATH}")
 
 

@@ -45,6 +45,25 @@ SEASONS = [
 ]
 
 
+def _log_http_error_diagnostics(exc: HTTPError) -> None:
+    """Print response headers/body once per failing URL to help diagnose blocks.
+
+    A generic "ERROR HTTP 503" doesn't say whether it's a real server error
+    or a WAF/CDN block page -- printing the server/CF headers and a body
+    snippet (once, on the first attempt) makes that visible in CI logs
+    without spamming them across every retry.
+    """
+    try:
+        server_header = exc.headers.get("Server", "not_available") if exc.headers else "not_available"
+        cf_ray = exc.headers.get("CF-RAY", "not_available") if exc.headers else "not_available"
+        body_snippet = exc.read(500).decode("utf-8", errors="replace")
+    except Exception as diagnostic_error:
+        print(f"  (diagnostic capture failed: {diagnostic_error})")
+        return
+    print(f"  diagnostics -> Server: {server_header} | CF-RAY: {cf_ray}")
+    print(f"  body snippet: {body_snippet!r}")
+
+
 def download_file(url: str, output_path: Path, force: bool) -> str:
     """Download one CSV unless it already exists and force is disabled.
 
@@ -63,6 +82,8 @@ def download_file(url: str, output_path: Path, force: bool) -> str:
                 content = response.read()
         except HTTPError as exc:
             last_error = f"ERROR HTTP {exc.code}"
+            if attempt == 1:
+                _log_http_error_diagnostics(exc)
             if exc.code not in RETRYABLE_HTTP_STATUSES:
                 return last_error
         except URLError as exc:

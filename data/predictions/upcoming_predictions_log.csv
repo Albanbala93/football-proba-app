@@ -7,3 +7,4 @@ prediction_created_at,match_date,league,home_team,away_team,mode,odds_source,odd
 2026-09-08T10:41:42,2026-09-05,Ligue 1,Nice,Le Mans,no-odds,none,,,,0.454913,0.209929,0.335158,0.664842,0.545087,home,0.454913,moderate_advantage,22.35,False,False,False,,no_odds_elo_v1
 2026-09-08T10:42:14,2026-09-06,Ligue 1,Troyes,Strasbourg,no-odds,none,,,,0.247823,0.214093,0.538084,0.461916,0.752177,away,0.538084,moderate_advantage,44.72,False,False,False,,no_odds_elo_v1
 2026-09-08T10:42:48,2026-09-06,Ligue 1,Angers,Rennes,no-odds,none,,,,0.27436,0.224609,0.501031,0.498969,0.72564,away,0.501031,moderate_advantage,35.74,False,False,False,,no_odds_elo_v1
+2026-09-08T10:43:15,2026-09-06,Ligue 1,Marseille,Paris FC,no-odds,none,,,,0.553946,0.20027,0.245783,0.754217,0.446054,home,0.553946,clear_home_advantage,47.82,False,False,False,,no_odds_elo_v1

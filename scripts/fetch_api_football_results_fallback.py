@@ -101,14 +101,27 @@ def _existing_raw_path(league_key: str, season: int) -> Path:
     return RAW_DATA_DIR / f"{league_key}_{season}_{season + 1}.csv"
 
 
-def _load_existing(path: Path) -> tuple[pd.DataFrame, pd.Timestamp | None]:
-    """Load an existing raw CSV (if any) and its latest parsed match date."""
+def _load_existing(path: Path) -> tuple[pd.DataFrame, set[tuple[str, str, str]]]:
+    """Load an existing raw CSV (if any) and its set of known (date, home, away) keys.
+
+    Membership is checked per match rather than via a "latest date seen" cutoff:
+    a match can be skipped on one run (e.g. an unresolved team name) while later
+    matches on the same or a later date succeed, so a date cutoff alone would
+    permanently hide that match once the cutoff moves past it.
+    """
     if not path.exists():
-        return pd.DataFrame(columns=RAW_CSV_COLUMNS), None
+        return pd.DataFrame(columns=RAW_CSV_COLUMNS), set()
     existing = pd.read_csv(path)
-    parsed_dates = pd.to_datetime(existing.get("Date"), dayfirst=True, errors="coerce")
-    latest = parsed_dates.max() if parsed_dates.notna().any() else None
-    return existing, latest
+    if not {"Date", "HomeTeam", "AwayTeam"}.issubset(existing.columns):
+        return existing, set()
+    keys = set(
+        zip(
+            existing["Date"].astype(str),
+            existing["HomeTeam"].astype(str),
+            existing["AwayTeam"].astype(str),
+        )
+    )
+    return existing, keys
 
 
 def fetch_missing_results(season: int, sleep_seconds: float = DEFAULT_SLEEP_SECONDS) -> dict[str, dict[str, Any]]:
@@ -126,7 +139,7 @@ def fetch_missing_results(season: int, sleep_seconds: float = DEFAULT_SLEEP_SECO
 
     for league_key, league_name, league_id in LEAGUES:
         raw_path = _existing_raw_path(league_key, season)
-        existing, latest_known_date = _load_existing(raw_path)
+        existing, existing_keys = _load_existing(raw_path)
         canonical_names = canonical_names_by_league.get(league_key, set())
 
         try:
@@ -155,8 +168,6 @@ def fetch_missing_results(season: int, sleep_seconds: float = DEFAULT_SLEEP_SECO
             if pd.isna(match_datetime):
                 continue
             match_date = match_datetime.tz_localize(None)
-            if latest_known_date is not None and match_date.normalize() <= latest_known_date.normalize():
-                continue
 
             home_api_name = (teams.get("home") or {}).get("name")
             away_api_name = (teams.get("away") or {}).get("name")
@@ -169,6 +180,10 @@ def fetch_missing_results(season: int, sleep_seconds: float = DEFAULT_SLEEP_SECO
                     unresolved.add(away_api_name)
                 continue
 
+            date_label = match_date.strftime("%d/%m/%Y")
+            if (date_label, home_team, away_team) in existing_keys:
+                continue
+
             result = _result_from_goals(goals.get("home"), goals.get("away"))
             if result is None:
                 continue
@@ -176,7 +191,7 @@ def fetch_missing_results(season: int, sleep_seconds: float = DEFAULT_SLEEP_SECO
             new_rows.append(
                 {
                     "Div": DIV_CODE_BY_LEAGUE_KEY[league_key],
-                    "Date": match_date.strftime("%d/%m/%Y"),
+                    "Date": date_label,
                     "Time": match_date.strftime("%H:%M"),
                     "HomeTeam": home_team,
                     "AwayTeam": away_team,

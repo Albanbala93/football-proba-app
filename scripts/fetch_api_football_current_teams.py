@@ -141,6 +141,7 @@ NAME_OVERRIDES: dict[str, str] = {
     "Ipswich Town": "Ipswich",
     "Leeds United": "Leeds",
     "Luton Town": "Luton",
+    "Hull City": "Hull",
     # La Liga
     "Athletic Club": "Ath Bilbao",
     "Atletico Madrid": "Ath Madrid",

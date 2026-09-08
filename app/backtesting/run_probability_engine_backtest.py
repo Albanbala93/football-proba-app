@@ -15,6 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+from app.core.outcome_models import FEATURE_CANDIDATES as CLASSIC_FEATURE_CANDIDATES  # noqa: E402
 from app.core.probability_engine import predict_match_probabilities  # noqa: E402
 
 
@@ -74,6 +75,18 @@ def load_test_data(features_path: Path, test_ratio: float = 0.2) -> tuple[pd.Dat
 
     data[target_column] = data[target_column].astype(str).str.upper().str.strip()
     data = data[data[target_column].isin(PRINT_LABELS)].reset_index(drop=True)
+
+    # Matches added by the API-Football fallback (used when football-data.co.uk
+    # is unreachable) have no odds or match-stats columns, only H/D/A results.
+    # The classic model requires those features, so rows missing them can't be
+    # backtested and are dropped here -- same as during training (outcome_models.py).
+    feature_columns = [column for column in CLASSIC_FEATURE_CANDIDATES if column in data.columns]
+    before_rows = len(data)
+    data = data.dropna(subset=feature_columns).reset_index(drop=True)
+    dropped_rows = before_rows - len(data)
+    if dropped_rows:
+        print(f"Dropped {dropped_rows} row(s) missing odds/stats features (e.g. API-Football fallback matches).")
+
     if len(data) < 10:
         raise ValueError("At least 10 valid matches are required for the probability engine backtest.")
 

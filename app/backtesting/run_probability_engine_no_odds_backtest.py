@@ -15,6 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+from app.core.outcome_models_no_odds import FEATURE_CANDIDATES as NO_ODDS_FEATURE_CANDIDATES  # noqa: E402
 from app.core.probability_engine_no_odds import predict_match_probabilities_no_odds  # noqa: E402
 
 
@@ -59,6 +60,17 @@ def load_test_data(features_path: Path, test_ratio: float = 0.2) -> tuple[pd.Dat
         data = data.dropna(subset=[date_column]).sort_values(date_column).reset_index(drop=True)
     data[target_column] = data[target_column].astype(str).str.upper().str.strip()
     data = data[data[target_column].isin(PRINT_LABELS)].reset_index(drop=True)
+
+    # Matches added by the API-Football fallback have no match-stats columns
+    # (shots, corners, fouls, cards), so their rolling-average features are
+    # missing -- drop rows missing them, same as during training.
+    feature_columns = [column for column in NO_ODDS_FEATURE_CANDIDATES if column in data.columns]
+    before_rows = len(data)
+    data = data.dropna(subset=feature_columns).reset_index(drop=True)
+    dropped_rows = before_rows - len(data)
+    if dropped_rows:
+        print(f"Dropped {dropped_rows} row(s) missing stats features (e.g. API-Football fallback matches).")
+
     split_index = int(len(data) * (1 - test_ratio))
     split_index = max(1, min(split_index, len(data) - 1))
     return data.iloc[split_index:].copy(), target_column, date_column, home_team_column, away_team_column

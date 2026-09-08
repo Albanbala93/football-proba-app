@@ -3,3 +3,4 @@ prediction_created_at,match_date,league,home_team,away_team,mode,odds_source,odd
 2026-09-08T10:39:24,2026-09-04,Ligue 1,Lyon,Auxerre,no-odds,none,,,,0.680161,0.16521,0.154629,0.845371,0.319839,home,0.680161,clear_home_advantage,77.61,False,False,False,,no_odds_elo_v1
 2026-09-08T10:40:11,2026-09-04,Ligue 1,Paris SG,Monaco,no-odds,none,,,,0.689792,0.182582,0.127627,0.872373,0.310208,home,0.689792,clear_home_advantage,78.0,False,False,False,,no_odds_elo_v1
 2026-09-08T10:40:47,2026-09-05,Ligue 1,Lens,Lorient,no-odds,none,,,,0.633324,0.198573,0.168103,0.831897,0.366676,home,0.633324,clear_home_advantage,66.28,False,False,False,,no_odds_elo_v1
+2026-09-08T10:41:15,2026-09-05,Ligue 1,Le Havre,Brest,no-odds,none,,,,0.377878,0.222465,0.399657,0.600343,0.622122,away,0.399657,balanced_match,8.71,False,False,False,,no_odds_elo_v1

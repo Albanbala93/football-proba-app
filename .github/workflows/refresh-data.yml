@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
 
+env:
+  API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -21,11 +24,22 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install pandas
+        run: pip install pandas requests python-dotenv
 
       - name: Download current season data
+        id: download
         continue-on-error: true
         run: python scripts/download_big5_data.py --current-season-only
+
+      # football-data.co.uk has occasionally rejected requests from GitHub
+      # Actions (persistent 503s) while remaining reachable from a normal
+      # browser -- this fills in whatever results it's missing from
+      # API-Football instead of leaving the app on stale data. Keep the
+      # --season value in sync with SEASONS[-1] in download_big5_data.py.
+      - name: Fallback - fetch missing results from API-Football
+        if: steps.download.outcome == 'failure'
+        continue-on-error: true
+        run: python scripts/fetch_api_football_results_fallback.py --season 2026
 
       - name: Regenerate upcoming fixtures and current teams reference
         run: |

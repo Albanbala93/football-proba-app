@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import time
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
@@ -9,6 +10,9 @@ from urllib.request import urlopen
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 URL_TEMPLATE = "https://www.football-data.co.uk/mmz4281/{season_code}/{league_code}.csv"
+RETRYABLE_HTTP_STATUSES = {429, 500, 502, 503, 504}
+RETRY_ATTEMPTS = 3
+RETRY_BACKOFF_SECONDS = 5
 
 LEAGUES = [
     ("Premier League", "E0", "premier_league"),
@@ -31,22 +35,36 @@ SEASONS = [
 
 
 def download_file(url: str, output_path: Path, force: bool) -> str:
-    """Download one CSV unless it already exists and force is disabled."""
+    """Download one CSV unless it already exists and force is disabled.
+
+    Retries a few times on transient errors (HTTP 429/5xx, timeouts) since
+    football-data.co.uk occasionally returns short-lived 503s -- without a
+    retry, one bad request silently stalls the daily refresh for a whole day.
+    """
     if output_path.exists() and not force:
         return "SKIP"
 
-    try:
-        with urlopen(url, timeout=30) as response:
-            content = response.read()
-    except HTTPError as exc:
-        return f"ERROR HTTP {exc.code}"
-    except URLError as exc:
-        return f"ERROR URL {exc.reason}"
-    except TimeoutError:
-        return "ERROR timeout"
+    last_error = "ERROR unknown"
+    for attempt in range(1, RETRY_ATTEMPTS + 1):
+        try:
+            with urlopen(url, timeout=30) as response:
+                content = response.read()
+        except HTTPError as exc:
+            last_error = f"ERROR HTTP {exc.code}"
+            if exc.code not in RETRYABLE_HTTP_STATUSES:
+                return last_error
+        except URLError as exc:
+            last_error = f"ERROR URL {exc.reason}"
+        except TimeoutError:
+            last_error = "ERROR timeout"
+        else:
+            output_path.write_bytes(content)
+            return "OK"
 
-    output_path.write_bytes(content)
-    return "OK"
+        if attempt < RETRY_ATTEMPTS:
+            time.sleep(RETRY_BACKOFF_SECONDS * attempt)
+
+    return last_error
 
 
 def run_downloads(force: bool = False, current_season_only: bool = False) -> int:

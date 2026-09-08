@@ -24,6 +24,7 @@ jobs:
         run: pip install pandas
 
       - name: Download current season data
+        continue-on-error: true
         run: python scripts/download_big5_data.py --current-season-only
 
       - name: Regenerate upcoming fixtures and current teams reference

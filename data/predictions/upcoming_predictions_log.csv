@@ -1,3 +1,4 @@
 prediction_created_at,match_date,league,home_team,away_team,mode,odds_source,odds_home,odds_draw,odds_away,home_win_probability,draw_probability,away_win_probability,home_no_loss_probability,away_no_loss_probability,favorite_team,favorite_probability,match_profile,confidence_score,is_draw_plausible,is_strong_draw_signal,is_very_strong_draw_signal,calibrated_draw_signal,model_version
 2026-09-08T10:38:35,2026-09-03,Ligue 1,Toulouse,Lille,no-odds,none,,,,0.299749,0.235677,0.464574,0.535426,0.700251,away,0.464574,moderate_advantage,26.97,False,False,False,,no_odds_elo_v1
 2026-09-08T10:39:24,2026-09-04,Ligue 1,Lyon,Auxerre,no-odds,none,,,,0.680161,0.16521,0.154629,0.845371,0.319839,home,0.680161,clear_home_advantage,77.61,False,False,False,,no_odds_elo_v1
+2026-09-08T10:40:11,2026-09-04,Ligue 1,Paris SG,Monaco,no-odds,none,,,,0.689792,0.182582,0.127627,0.872373,0.310208,home,0.689792,clear_home_advantage,78.0,False,False,False,,no_odds_elo_v1

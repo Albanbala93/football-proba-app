@@ -4,7 +4,7 @@ import argparse
 import time
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +13,17 @@ URL_TEMPLATE = "https://www.football-data.co.uk/mmz4281/{season_code}/{league_co
 RETRYABLE_HTTP_STATUSES = {429, 500, 502, 503, 504}
 RETRY_ATTEMPTS = 3
 RETRY_BACKOFF_SECONDS = 5
+# football-data.co.uk (or a WAF in front of it) appears to reject Python's
+# default urllib User-Agent for the current-season file, while a normal
+# browser request succeeds -- send a realistic one so scheduled requests
+# aren't mistaken for bot traffic.
+REQUEST_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/csv,application/vnd.ms-excel,*/*",
+}
 
 LEAGUES = [
     ("Premier League", "E0", "premier_league"),
@@ -45,9 +56,10 @@ def download_file(url: str, output_path: Path, force: bool) -> str:
         return "SKIP"
 
     last_error = "ERROR unknown"
+    request = Request(url, headers=REQUEST_HEADERS)
     for attempt in range(1, RETRY_ATTEMPTS + 1):
         try:
-            with urlopen(url, timeout=30) as response:
+            with urlopen(request, timeout=30) as response:
                 content = response.read()
         except HTTPError as exc:
             last_error = f"ERROR HTTP {exc.code}"

@@ -3501,16 +3501,27 @@ def render_reliability_trend(evaluated: pd.DataFrame) -> None:
 def render_predictions_evaluation_tab() -> None:
     """Render evaluated upcoming predictions."""
     if st.button("Rafraichir les evaluations"):
-        st.info(
-            "Pour rafraichir les evaluations, lancez dans le terminal : "
-            "python app/backtesting/evaluate_upcoming_predictions.py"
-        )
+        with st.spinner("Évaluation des prédictions enregistrées en cours..."):
+            result = subprocess.run(
+                [sys.executable, str(PROJECT_ROOT / "app" / "backtesting" / "evaluate_upcoming_predictions.py")],
+                cwd=PROJECT_ROOT,
+                capture_output=True,
+                text=True,
+            )
+        if result.returncode != 0:
+            st.error("Échec de l'évaluation des prédictions.")
+            st.code((result.stdout or "")[-3000:] + "\n" + (result.stderr or "")[-3000:])
+        else:
+            load_upcoming_predictions_evaluated.clear()
+            st.success("Évaluations mises à jour.")
+            st.rerun()
 
     evaluated_predictions = load_upcoming_predictions_evaluated()
     if evaluated_predictions.empty and not UPCOMING_PREDICTIONS_EVALUATED_PATH.exists():
         st.info(
-            "Aucune evaluation disponible. Lancez python app/backtesting/evaluate_upcoming_predictions.py "
-            "apres avoir enregistre des predictions."
+            "Aucune evaluation disponible. Enregistrez des predictions depuis l'onglet "
+            "\"Analyser un match a venir\", puis cliquez sur \"Rafraichir les evaluations\" ci-dessus "
+            "une fois les matchs joues."
         )
         return
 
